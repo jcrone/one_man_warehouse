@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipment_number: MyString
+  description: MyString
+  shipper: MyString
+  tracking: MyString
+  status: 1
+  delvery_estmate: 2023-02-27 11:11:43
+
+two:
+  shipment_number: MyString
+  description: MyString
+  shipper: MyString
+  tracking: MyString
+  status: 1
+  delvery_estmate: 2023-02-27 11:11:43

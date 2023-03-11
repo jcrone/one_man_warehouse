@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Link</h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Name: </strong>
+          <%= @link.name %>
+        </div>
+                <div class="mb-2">
+          <strong>Category: </strong>
+          <%= @link.category %>
+        </div>
+                <div class="mb-2">
+          <strong>Link: </strong>
+          <%= @link.link %>
+        </div>
+                <%= render @link %>
+    </div>
+
+    
+    <div>
+      <%= link_to "Edit this link", edit_link_path(@link) %> |
+      <%= link_to "Back to links", links_path %>
+    
+      <%= button_to "Destroy this link", @link, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+    </div>
+</div>

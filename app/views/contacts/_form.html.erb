@@ -1,0 +1,68 @@
+
+
+<%= form_with(model: contact) do |form| %>
+  <% if contact.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+        <% contact.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :first_name, class: "form-label" %>
+    <%= form.text_field :first_name, autocomplete: "first_name", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :last_name, class: "form-label" %>
+    <%= form.text_field :last_name, autocomplete: "last_name", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :company, class: "form-label" %>
+    <%= form.text_field :company, autocomplete: "company", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :address, class: "form-label" %>
+    <%= form.text_field :address, autocomplete: "address", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :phone, class: "form-label" %>
+    <%= form.text_field :phone, autocomplete: "phone", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :notes, class: "form-label" %>
+    <%= form.text_field :notes, autocomplete: "notes", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.text_field :email, autocomplete: "email", class: "form-control" %>
+  </div>
+  </div>
+
+  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <%= form.submit class: "btn btn-primary btn-lg mt-4" %>
+  </div>
+<% end %>

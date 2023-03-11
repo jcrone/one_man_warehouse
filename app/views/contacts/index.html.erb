@@ -1,0 +1,36 @@
+<div class="container" >
+  <h1>Contacts</h1> <%= link_to "New contact", new_contact_path, class:"btn btn-primary" %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+                 <th scope="col">First name</th>
+                 <th scope="col">Last name</th>
+                 <th scope="col">Company</th>
+                 <th scope="col">Address</th>
+                 <th scope="col">Phone</th>
+                 <th scope="col">Notes</th>
+                 <th scope="col">Email</th>
+                  <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div id="contacts">
+          <% @contacts.each do |contact| %>
+              <tr>
+                  <%= render contact %>
+                  <td>
+                    <%= link_to "Show", contact %>
+                    <%= link_to edit_contact_path(contact) do %>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    <% end %> 
+                  </td>
+              </tr>
+
+          <% end %>
+        </div>
+        
+      </tbody>
+    </table>
+</div>
+        
+

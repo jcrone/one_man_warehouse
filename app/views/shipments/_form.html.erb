@@ -1,0 +1,62 @@
+
+
+  <%= form_with(model: shipment) do |form| %>
+    <% if shipment.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(shipment.errors.count, "error") %> prohibited this shipment from being saved:</h2>
+  
+        <ul>
+          <% shipment.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div>
+      <%= form.label :shipment_number, class: "form-label"%>
+      <%= form.text_field :shipment_number, class: "form-control" %>
+    </div>
+  
+    <div>
+      <%= form.label :description, class: "form-label"%>
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
+  
+    <div>
+      <%= form.label :shipper, class: "form-label" %>
+      <%= form.text_field :shipper, class: "form-control" %>
+    </div>
+  
+    <div>
+      <%= form.label :tracking, class: "form-label" %>
+      <%= form.text_field :tracking, class: "form-control" %>
+    </div>
+  
+    <div>
+      <%= form.label :status, class: "form-label"%>
+      <%= form.select :status, 
+      options_for_select([
+           ["Pending" , 'pending'], 
+           ["Shipped", "shipped"], 
+           ["Delivered", "delivered"],
+           ["Issues", "issues"]], selected: form.object.status),
+           {}, {class: "form-control" } %>
+    </div>
+  
+    <div>
+      <%= form.label :delvery_estmate, class: "form-label" %>
+      <%= form.datetime_field :delvery_estmate, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :files, class: "form-label" %>
+      <%= form.file_field :files, multiple: true, direct_upload: true, class: "form-control"  %>
+    </div>
+
+    <div>
+      <%= form.submit class:"btn btn-primary btn-lg mt-4" %>
+    </div>
+  <% end %>
+
+

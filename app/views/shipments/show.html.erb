@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Shipment <%= @shipment.status.titleize %></h1> 
+  <div class="shadow p-3 mb-5 bg-body rounded">
+    <div class="mb-2">
+      <strong>Shipment #:</strong> <%= @shipment.shipment_number %>
+    </div>
+    <div class="mb-2">
+      <strong>Updated Last:</strong>  <%= @shipment.updated_at %>
+    </div>
+    <div class="mb-2">
+      <strong>Description:</strong>  
+      <%= @shipment.description %>
+    </div>
+    <div class="mb-2">
+      <strong>Shipper:</strong> 
+      <%= @shipment.shipper %>
+    </div>
+    <div class="mb-2">
+      <strong>Tracking:</strong>  
+      <%= @shipment.tracking %>
+    </div>
+    <div class="mb-2">
+      <strong>Delivery Est:</strong> 
+      <%= @shipment.delvery_estmate %>
+    </div>
+
+    <% @shipment.files.each do |file| %>
+      <%#= link_to shipment_delete_file_attachment_path(id: file.id),
+            method: :delete,
+              data: { confirm: 'Are you sure?' } do%>
+      <span style="color: Tomato;">
+      <i class="far fa-times-circle"></i>
+      </span>
+      <%# end %>
+      <%= link_to file.filename, file, target: :blank %>
+     
+    <% end %>
+
+
+  </div>
+
+
+
+ 
+  <div class="mb-2">
+    <%= link_to "Edit this shipment", edit_shipment_path(@shipment) %> |
+    <%= link_to "Back to shipments", shipments_path %>
+  
+    <%= button_to "Destroy this shipment", @shipment, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+  </div>
+
+</div>

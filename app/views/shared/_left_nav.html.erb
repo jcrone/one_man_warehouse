@@ -1,0 +1,14 @@
+<li class="nav-item">
+    <%= link_to "Home", root_path, class:"nav-link #{active_class(root_path)}" %>
+  
+<li class="nav-item">
+
+<li class="nav-item <%= %> ">
+  <%= link_to "Shipments", shipments_path, class:"nav-link #{active_class(shipments_path)}" %>
+</li>
+<li class="nav-item">
+  <%= link_to "Contacts", contacts_path, class: "nav-link #{active_class(contacts_path)} " %>
+</li>
+<li class="nav-item">
+            <%= link_to "Links", links_path, class: "nav-link #{active_class("links_path")} " %>
+         </li>
