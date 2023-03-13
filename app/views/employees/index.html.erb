@@ -1,0 +1,32 @@
+<div class="container" >
+  <h1>Employees</h1> <%= link_to "New employee", new_employee_path, class:"btn btn-primary" %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+                 <th scope="col">Name</th>
+                 <th scope="col">Hourly rate</th>
+                 <th scope="col">Email</th>
+                  <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div id="employees">
+          <% @employees.each do |employee| %>
+              <tr>
+                  <%= render employee %>
+                  <td>
+                    <%= link_to "Show", employee %>
+                    <%= link_to edit_employee_path(employee) do %>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    <% end %> 
+                  </td>
+              </tr>
+
+          <% end %>
+        </div>
+        
+      </tbody>
+    </table>
+</div>
+        
+

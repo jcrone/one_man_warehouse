@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="bg-white rounded shadow p-8 m-3">
+    <div class="p-5">
+      <h1>Editing employee</h1>
+      <%= render "form", employee: @employee %>
+      <br>  
+      <div>
+        <%= link_to "Show this employee", @employee %> |
+        <%= link_to "Back to employees", employees_path %>
+      </div>
+    </div>
+  </div>
+</div>

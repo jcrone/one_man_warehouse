@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Employee</h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Name: </strong>
+          <%= @employee.name %>
+        </div>
+                <div class="mb-2">
+          <strong>Hourly rate: </strong>
+          <%= @employee.hourly_rate %>
+        </div>
+                <div class="mb-2">
+          <strong>Email: </strong>
+          <%= @employee.email %>
+        </div>
+                <%= render @employee %>
+    </div>
+
+    
+    <div>
+      <%= link_to "Edit this employee", edit_employee_path(@employee) %> |
+      <%= link_to "Back to employees", employees_path %>
+    
+      <%= button_to "Destroy this employee", @employee, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+    </div>
+</div>
