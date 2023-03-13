@@ -19,7 +19,9 @@ digitalocean:
   endpoint: https://uatmyskiswap.sfo3.digitaloceanspaces.com
   access_key_id: Rails.application.credentials.digitalocean_spaces[:access_key_id]
   secret_access_key: Rails.application.credentials.digitalocean_spaces[:secret_access_key]
-  # ...and other options
+  region: sfo3
+  endpoint: 'https://sfo3.digitaloceanspaces.com'
+  bucket: uatmyskiswap
 
 
 
