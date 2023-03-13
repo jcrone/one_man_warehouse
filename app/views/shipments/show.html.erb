@@ -32,7 +32,7 @@
       <i class="far fa-times-circle"></i>
       </span>
       <%# end %>
-      <%= link_to file.filename, url_for(file), target: :blank %>
+      <%= link_to file.filename, rails_blob_path(file, diposition: "attachment")%>
      
     <% end %>
 
