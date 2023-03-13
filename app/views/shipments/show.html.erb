@@ -26,8 +26,7 @@
 
     <% @shipment.files.each do |file| %>
       <%= button_to delete_shipment_file_path(id: file.id),
-            method: :delete,
-              data: { confirm: 'Are you sure?' } do%>
+        method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } do%>
       <span style="color: Tomato;">
       <i class="far fa-times-circle"></i>
       </span>
