@@ -14,11 +14,13 @@
     <%= hour.hours * hour.employee.hourly_rate %>
   </td>
 <% end %>
-<%if !hour.pay_date.nil? %>
+
 <td>
+  <%if !hour.pay_date.nil? %>
       <%= hour.pay_date.strftime("%m/%d/%Y") %>
+      <%end %> 
   </td>
-<%end %> 
+
 <td>
       <%= hour.status %>
   </td>
