@@ -15,15 +15,8 @@
 
    <div class="d-flex flex-row align-items-center mb-4">
     <div class="form-outline flex-fill mb-0">
-    <%= form.label :first_name, class: "form-label" %>
-    <%= form.text_field :first_name, autocomplete: "first_name", class: "form-control" %>
-  </div>
-  </div>
-
-   <div class="d-flex flex-row align-items-center mb-4">
-    <div class="form-outline flex-fill mb-0">
-    <%= form.label :last_name, class: "form-label" %>
-    <%= form.text_field :last_name, autocomplete: "last_name", class: "form-control" %>
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, autocomplete: "name", class: "form-control" %>
   </div>
   </div>
 
@@ -51,7 +44,7 @@
    <div class="d-flex flex-row align-items-center mb-4">
     <div class="form-outline flex-fill mb-0">
     <%= form.label :notes, class: "form-label" %>
-    <%= form.text_field :notes, autocomplete: "notes", class: "form-control" %>
+    <%= form.text_area :notes, autocomplete: "notes", class: "form-control" %>
   </div>
   </div>
 
