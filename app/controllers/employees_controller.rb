@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
+  before_action :need_admin
   before_action :set_employee, only: %i[ show edit update destroy ]
+  
 
   # GET /employees or /employees.json
   def index
@@ -63,6 +65,11 @@ class EmployeesController < ApplicationController
       @employee = Employee.find(params[:id])
     end
 
+    def need_admin
+      if !current_user.admin?
+        redirect_to root_path, notice: "You dont have admin access." 
+      end 
+    end 
     # Only allow a list of trusted parameters through.
     def employee_params
       params.require(:employee).permit(:name, :hourly_rate, :email)
