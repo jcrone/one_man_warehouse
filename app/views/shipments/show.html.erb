@@ -25,13 +25,13 @@
     </div>
 
     <% @shipment.files.each do |file| %>
-      <%#= link_to shipment_delete_file_attachment_path(id: file.id),
+      <%= button_to delete_shipment_file_path(id: file.id),
             method: :delete,
               data: { confirm: 'Are you sure?' } do%>
       <span style="color: Tomato;">
       <i class="far fa-times-circle"></i>
       </span>
-      <%# end %>
+      <% end %>
       <%= link_to file.filename, rails_blob_path(file, diposition: "attachment")%>
      
     <% end %>

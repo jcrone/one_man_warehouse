@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :shippings
   devise_for :users
 
+  delete 'delete_shipment_file', to: 'shipments#delete_shipment_file'
   root to: "static#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
