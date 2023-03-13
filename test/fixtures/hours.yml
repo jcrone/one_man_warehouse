@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  hours: 9.99
+  start_date: 2023-03-13
+  end_date: 2023-03-13
+  pay_date: 2023-03-13
+  status: 1
+
+two:
+  employee: two
+  hours: 9.99
+  start_date: 2023-03-13
+  end_date: 2023-03-13
+  pay_date: 2023-03-13
+  status: 1

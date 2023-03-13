@@ -1,0 +1,68 @@
+
+
+<%= form_with(model: hour) do |form| %>
+  <% if hour.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(hour.errors.count, "error") %> prohibited this hour from being saved:</h2>
+
+      <ul>
+        <% hour.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label "Contractor", class: "form-label" %>
+    <%= form.collection_select( :employee_id, Employee.order(:name),:id,:name,{include_blank: true}, {class: 'form-select'})%>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :hours, class: "form-label" %>
+    <%= form.text_field :hours, autocomplete: "hours", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :start_date, class: "form-label" %>
+    <%= form.date_field :start_date, autocomplete: "start_date", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :end_date, class: "form-label" %>
+    <%= form.date_field :end_date, autocomplete: "end_date", class: "form-control" %>
+  </div>
+  </div>
+
+  <% if current_user.admin? %>
+    <div class="d-flex flex-row align-items-center mb-4">
+      <div class="form-outline flex-fill mb-0">
+      <%= form.label :pay_date, class: "form-label" %>
+      <%= form.date_field :pay_date, autocomplete: "pay_date", class: "form-control" %>
+    </div>
+    </div>
+
+    <div class="d-flex flex-row align-items-center mb-4">
+      <div class="form-outline flex-fill mb-0">
+        <%= form.label :status, class: "form-label"%>
+        <%= form.select :status, 
+        options_for_select([
+            ["Upaid" , 'unpaid'], 
+            ["Processing", "processing"], 
+            ["Paid", "paid"]], selected: form.object.status),
+            {}, {class: "form-control" } %>
+    </div>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <%= form.submit class: "btn btn-primary btn-lg mt-4" %>
+  </div>
+<% end %>

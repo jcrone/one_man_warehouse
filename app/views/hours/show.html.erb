@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Hour</h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Contractor: </strong>
+          <%= @hour.employee.name %>
+        </div>
+                <div class="mb-2">
+          <strong>Hours: </strong>
+          <%= @hour.hours %>
+        </div>
+                <div class="mb-2">
+          <strong>Start date: </strong>
+          <%= @hour.start_date %>
+        </div>
+                <div class="mb-2">
+          <strong>End date: </strong>
+          <%= @hour.end_date %>
+        </div>
+                <div class="mb-2">
+          <strong>Pay date: </strong>
+          <%= @hour.pay_date %>
+        </div>
+                <div class="mb-2">
+          <strong>Status: </strong>
+          <%= @hour.status %>
+        </div>
+                <%= render @hour %>
+    </div>
+
+    
+    <div>
+      <%= link_to "Edit this hour", edit_hour_path(@hour) %> |
+      <%= link_to "Back to hours", hours_path %>
+    
+      <%= button_to "Destroy this hour", @hour, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+    </div>
+</div>

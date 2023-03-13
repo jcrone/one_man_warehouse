@@ -1,0 +1,23 @@
+<div id="<%= dom_id hour %>">
+<td>
+      <%= hour.employee.name %>
+  </td>
+<td>
+      <%= hour.hours %>
+  </td>
+<td>
+  <%= hour.start_date.strftime("%m/%d/%Y")%> - <%= hour.end_date.strftime("%m/%d/%Y") %>
+</td>    
+
+<% if current_user.admin? %> 
+  <td>
+    <%= hour.hours * hour.employee.hourly_rate %>
+  </td>
+<% end %>
+<td>
+      <%= hour.pay_date %>
+  </td>
+<td>
+      <%= hour.status %>
+  </td>
+</div>

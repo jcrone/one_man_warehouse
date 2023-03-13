@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :hours
   resources :todos
   resources :employees
   resources :links
