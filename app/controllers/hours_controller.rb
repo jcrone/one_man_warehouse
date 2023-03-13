@@ -40,7 +40,7 @@ class HoursController < ApplicationController
   # PATCH/PUT /hours/1 or /hours/1.json
   def update
 
-    if !hour_params[:pay_date].nil? && !@hour.paid? 
+    if !hour_params[:pay_date].blank? && !@hour.paid? 
       @hour.processing!
       PaidStatusJob.set(wait_until: hour_params[:pay_date].to_datetime ).perform_later(@hour.id)
     end 
