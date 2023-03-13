@@ -17,7 +17,7 @@ class TodosTest < ApplicationSystemTestCase
     fill_in "Description", with: @todo.description
     fill_in "Due date", with: @todo.due_date
     fill_in "Name", with: @todo.name
-    fill_in "Status", with: @todo.status
+    fill_in "Status", with: @todo.todo_status
     click_on "Create Todo"
 
     assert_text "Todo was successfully created"
@@ -31,7 +31,7 @@ class TodosTest < ApplicationSystemTestCase
     fill_in "Description", with: @todo.description
     fill_in "Due date", with: @todo.due_date
     fill_in "Name", with: @todo.name
-    fill_in "Status", with: @todo.status
+    fill_in "Status", with: @todo.todo_status
     click_on "Update Todo"
 
     assert_text "Todo was successfully updated"
