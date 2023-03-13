@@ -79,6 +79,7 @@ gem "pagy", "~> 5.1"
 gem "pg_search", "~> 2.3"
 gem "prawn", github: "prawnpdf/prawn"
 gem "name_of_person", "~> 1.0"
+gem "aws-sdk-s3", require: false
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
