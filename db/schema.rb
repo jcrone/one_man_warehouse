@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_13_190630) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_13_211106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_190630) do
     t.decimal "hours"
     t.date "start_date"
     t.date "end_date"
-    t.date "pay_date"
+    t.datetime "pay_date", precision: nil
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

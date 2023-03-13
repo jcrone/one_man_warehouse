@@ -39,6 +39,11 @@ class HoursController < ApplicationController
 
   # PATCH/PUT /hours/1 or /hours/1.json
   def update
+
+    if !hour_params[:pay_date].nil? && !@hour.paid? 
+      @hour.processing!
+      PaidStatusJob.set(wait_until: hour_params[:pay_date].to_datetime ).perform_later(@hour.id)
+    end 
     respond_to do |format|
       if @hour.update(hour_params)
         format.html { redirect_to hour_url(@hour), notice: "Hour was successfully updated." }

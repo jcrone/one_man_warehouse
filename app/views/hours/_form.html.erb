@@ -45,21 +45,11 @@
     <div class="d-flex flex-row align-items-center mb-4">
       <div class="form-outline flex-fill mb-0">
       <%= form.label :pay_date, class: "form-label" %>
-      <%= form.date_field :pay_date, autocomplete: "pay_date", class: "form-control" %>
+      <%= form.datetime_field :pay_date, autocomplete: "pay_date", class: "form-control" %>
     </div>
     </div>
 
-    <div class="d-flex flex-row align-items-center mb-4">
-      <div class="form-outline flex-fill mb-0">
-        <%= form.label :status, class: "form-label"%>
-        <%= form.select :status, 
-        options_for_select([
-            ["Upaid" , 'unpaid'], 
-            ["Processing", "processing"], 
-            ["Paid", "paid"]], selected: form.object.status),
-            {}, {class: "form-control" } %>
-    </div>
-    </div>
+
   <% end %>
 
   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
