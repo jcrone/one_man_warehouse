@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: omw
+  database: one_man_warehouse_production
   username: one_man_warehouse
   password: <%= ENV["ONE_MAN_WAREHOUSE_DATABASE_PASSWORD"] %>
