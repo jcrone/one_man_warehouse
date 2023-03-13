@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Todo</h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Name: </strong>
+          <%= @todo.name %>
+        </div>
+                <div class="mb-2">
+          <strong>Description: </strong>
+          <%= @todo.description %>
+        </div>
+                <div class="mb-2">
+          <strong>Due date: </strong>
+          <%= @todo.due_date %>
+        </div>
+                <div class="mb-2">
+          <strong>Status: </strong>
+          <%= @todo.status %>
+        </div>
+                <%= render @todo %>
+    </div>
+
+    
+    <div>
+      <%= link_to "Edit this todo", edit_todo_path(@todo) %> |
+      <%= link_to "Back to todos", todos_path %>
+    
+      <%= button_to "Destroy this todo", @todo, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+    </div>
+</div>
