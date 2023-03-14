@@ -76,7 +76,7 @@ group :test do
 end
 
 gem "devise", "~> 4.8", ">= 4.8.1"
-gem "pagy", "~> 5.1"
+gem 'pagy', '~> 6.0' # omit patch digit
 gem "pg_search", "~> 2.3"
 gem "prawn", github: "prawnpdf/prawn"
 gem "name_of_person", "~> 1.0"

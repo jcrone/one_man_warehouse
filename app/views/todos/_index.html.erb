@@ -1,0 +1,40 @@
+<div class="container" >
+    <h1>Todos</h1> <%= link_to "New todo", new_todo_path, class:"btn btn-primary" %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+                   <th scope="col">Name</th>
+                   <th scope="col">Description</th>
+                   <th scope="col">Due date</th>
+                   <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div id="todos">
+            <% @todos.each do |todo| %>
+                <tr>
+                    <%= render todo %>
+                    <td>
+                      <%= link_to "Show", todo %>
+                      <%= link_to edit_todo_path(todo) do %>
+                          <i class="fa-solid fa-pen-to-square"></i>
+                      <% end %> 
+                    </td>
+                </tr>
+  
+            <% end %>
+          </div>
+          
+        </tbody>
+      </table>    
+  
+  </div>
+   <div class="container">
+     <% if @pagy.pages > 1 %>
+     <div class="d-flex justify-content-center">
+       <%== pagy_bootstrap_nav(@pagy) %>   
+     </div>
+  
+     <% end %>
+   </div>

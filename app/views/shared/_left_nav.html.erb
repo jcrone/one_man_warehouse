@@ -12,9 +12,11 @@
 <li class="nav-item">
             <%= link_to "Links", links_path, class: "nav-link #{active_class("links_path")} " %>
          </li>
+         <% if current_user.admin? %>
 <li class="nav-item">
             <%= link_to "Employees", employees_path, class: "nav-link #{active_class("employees_path")} " %>
          </li>
+         <% end %>
 <li class="nav-item">
             <%= link_to "Todos", todos_path, class: "nav-link #{active_class("todos_path")} " %>
          </li>

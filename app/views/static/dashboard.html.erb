@@ -1,0 +1,14 @@
+<div class="container text-center">
+    <% if Time.now.strftime("%A") == "Wednesday" %>
+        <span style="font-size: 3em; color: Tomato;"><i class="fas fa-exclamation-triangle"></i></span><h1>Wednesday Run Payroll Early</h1>
+    <% elsif Time.now.strftime("%A") == "Thursday" %>
+        <span style="font-size: 3em; color: Tomato;"><i class="fas fa-exclamation-triangle"></i><i class="fa-solid fa-skull"></i></span><h1>Thursday Run Payroll or Else you f@*$...</h1>
+    <% end %> 
+</div>
+<%= render 'todos/index' %>
+
+<%= render 'hours/unpaid_index' %>
+<div class="container mt-5">
+    <h1>Shipments</h1>
+    <%= render 'shipments/index' %>
+</div>

@@ -1,0 +1,35 @@
+<div class="container" >
+    <h1>Unpaid Hours</h1> <%= link_to "New hour", new_hour_path, class:"btn btn-primary" %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+                   <th scope="col">Contractor</th>
+                   <th scope="col">Hours</th>
+                   <th scope="col">Date Range</th>
+                   <% if current_user.admin? %>
+                    <th scope="col">Total</th>
+                   <% end %>
+                   <th scope="col">Pay date</th>
+                   <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div id="hours">
+            <% @unpaid.each do |hour| %>
+                <tr>
+                    <%= render hour %>
+                    <td>
+                      <%= link_to "Show", hour %>
+                      <%= link_to edit_hour_path(hour) do %>
+                          <i class="fa-solid fa-pen-to-square"></i>
+                      <% end %> 
+                    </td>
+                </tr>
+  
+            <% end %>
+          </div>
+          
+        </tbody>
+      </table>
+  </div>
