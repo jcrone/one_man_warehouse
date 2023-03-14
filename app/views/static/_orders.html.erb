@@ -1,0 +1,23 @@
+<% @orders.each do |order| %>
+<% order["items"].each do |item| %>
+ <tr>
+    <td>    <%= order["order_ref"] %></td> 
+    <td>    
+        <% if order["requested_shipping_service"] == "Second Day" || item["Shipping Method"] == "Expedited"%>
+        <span style="font-size: 1em; color: Tomato;"><i class="fas fa-exclamation-triangle"></i></span>
+        <%end%>
+        <%= order["requested_shipping_service"] %></td>
+    <td>    <%= order["channel_name"] %></td> 
+    <td>  
+        <% if item["quantity"]  > 1 %>
+            <span style="font-size: 1em; color: Tomato;"><i class="fas fa-exclamation-triangle"></i></span>
+        <%end%>
+        <%= item["quantity"] %>
+    </td> 
+    <td>    <%= item["title"] %></td> 
+    <td>    <%= item["total"] %></td> 
+    <td>    <%= item["sku"] %></td> 
+    
+ </tr>
+ <% end %>
+ <% end %>
