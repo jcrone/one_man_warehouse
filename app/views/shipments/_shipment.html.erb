@@ -12,9 +12,11 @@
     <td><%= shipment.description %></td>
     <td><%= shipment.shipper %></td>
     <td><%= shipment.tracking %></td>
-    <% if !shipment.delvery_estmate.nil?  %> 
-      <td><%= shipment.delvery_estmate.strftime("%m/%d/%Y") %></td>
-    <% end %> 
+      <td>
+        <% if !shipment.delvery_estmate.nil?  %> 
+          <%= shipment.delvery_estmate.strftime("%m/%d/%Y") %>
+        <% end %> 
+      </td> 
     <td><%= shipment.status %></td>
     <td> <%= link_to "Show this shipment", shipment %></td>
   </tr>
