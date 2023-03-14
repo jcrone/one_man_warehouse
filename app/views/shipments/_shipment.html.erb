@@ -14,7 +14,7 @@
   </td> 
     <td><%= shipment.description %></td>
     <td><%= shipment.shipper %></td>
-    <td><%= shipment.tracking %></td>
+    <td><%= link_to shipment.tracking, shipment.tracking %></td>
     <td><%= shipment.status %></td>
     <td> <%= link_to "Show", shipment %> 
         <%= link_to edit_shipment_path(shipment) do %>
