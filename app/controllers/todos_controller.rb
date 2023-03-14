@@ -50,7 +50,8 @@ class TodosController < ApplicationController
   # DELETE /todos/1 or /todos/1.json
   def destroy
     @todo.destroy
-    id = rand(1..17)
+    last = Phrase.count
+    id = rand(1..last)
     @phrase = Phrase.find(id)
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path, notice: @phrase.phrase ) }
