@@ -20,6 +20,10 @@
                       <%= link_to edit_todo_path(todo) do %>
                           <i class="fa-solid fa-pen-to-square"></i>
                       <% end %> 
+                      <%= link_to todo_path(todo),
+                      method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } do%>
+                      <span class="text-danger ml-2"><i class="fa-solid fa-trash"></i></span>
+                      <% end %>
                     </td>
                 </tr>
   

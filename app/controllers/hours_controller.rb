@@ -28,7 +28,7 @@ class HoursController < ApplicationController
 
     respond_to do |format|
       if @hour.save
-        format.html { redirect_to hour_url(@hour), notice: "Hour was successfully created." }
+        format.html { redirect_to hours_path, notice: "#{@hour.employee.name}'s hours were successfully created." }
         format.json { render :show, status: :created, location: @hour }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -1,23 +1,25 @@
 <div id="<%= dom_id shipment %>">
-  <% if !shipment.delvery_estmate.nil? && (shipment.delvery_estmate < Time.now + 5.days) %>
+  <% if !shipment.delvery_estmate.nil? && (shipment.delvery_estmate < Time.now + 5.days) && !shipment.delivered? %>
     <tr class="table-warning" >
-      <td> <span style="font-size: 3em; color: Tomato;"><i class="fas fa-exclamation-triangle"></i></span><%= shipment.shipment_number %></td>
+      <td> <%= shipment.shipment_number %><span style="font-size: 3em; color: Tomato;"><i class="fas fa-exclamation-triangle"></i></span></td>
   <%else%>
     <tr>
       <td> <%= shipment.shipment_number %></td>
   <% end %>
   
-    
-    <td><%= shipment.updated_at %></td>
+  <td>
+    <% if !shipment.delvery_estmate.nil?  %> 
+      <%= shipment.delvery_estmate.strftime("%m/%d/%Y") %>
+    <% end %> 
+  </td> 
     <td><%= shipment.description %></td>
     <td><%= shipment.shipper %></td>
     <td><%= shipment.tracking %></td>
-      <td>
-        <% if !shipment.delvery_estmate.nil?  %> 
-          <%= shipment.delvery_estmate.strftime("%m/%d/%Y") %>
-        <% end %> 
-      </td> 
     <td><%= shipment.status %></td>
-    <td> <%= link_to "Show this shipment", shipment %></td>
+    <td> <%= link_to "Show", shipment %> 
+        <%= link_to edit_shipment_path(shipment) do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %> 
+    </td>
   </tr>
 </div>
