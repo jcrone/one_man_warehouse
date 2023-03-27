@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_025753) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_010548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_025753) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.decimal "amount"
+    t.text "description"
+    t.bigint "employee_id", null: false
+    t.string "expense_type", default: "expense"
+    t.string "status", default: "unpaid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_expenses_on_employee_id"
   end
 
   create_table "hours", force: :cascade do |t|
@@ -132,5 +143,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_025753) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "expenses", "employees"
   add_foreign_key "hours", "employees"
 end

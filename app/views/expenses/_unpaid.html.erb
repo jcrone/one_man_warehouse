@@ -1,0 +1,29 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+               <th scope="col">Amount</th>
+               <th scope="col">Description</th>
+               <th scope="col">Employee</th>
+               <th scope="col">Expense type</th>
+               <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <div id="expenses">
+        <% @unpaid_expenses.each do |expense| %>
+            <tr>
+                <%= render expense %>
+                <td>
+                  <%= link_to "Show", expense %>
+                  <%= link_to edit_expense_path(expense) do %>
+                      <i class="fa-solid fa-pen-to-square"></i>
+                  <% end %> 
+                </td>
+            </tr>
+
+        <% end %>
+      </div>
+      
+    </tbody>
+  </table>

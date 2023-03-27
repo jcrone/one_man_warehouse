@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>Expense</h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Amount: </strong>
+          <%= number_to_currency(@expense.amount) %>
+        </div>
+                <div class="mb-2">
+          <strong>Description: </strong>
+          <%= @expense.description %>
+        </div>
+                <div class="mb-2">
+          <strong>Employee: </strong>
+          <%= @expense.employee.name %>
+        </div>
+                <div class="mb-2">
+          <strong>Expense type: </strong>
+          <%= @expense.expense_type %>
+        </div>
+        <div class="mb-2">
+          <strong>Employee: </strong>
+          <%= @expense.status.titleize  %>
+        </div>
+
+        <% @expense.expense_docs.each do |file| %>
+        <%= link_to delete_shipment_file_path(id: file.id),
+          method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } do%>
+        <span style="color: Tomato;">
+        <i class="far fa-times-circle"></i>
+        </span>
+        <% end %>
+        <%= link_to file.filename, rails_blob_path(file, diposition: "attachment")%>
+       
+      <% end %>
+    </div>
+
+    
+    <div>
+      <%= link_to "Edit this expense", edit_expense_path(@expense) %> |
+      <%= link_to "Back to expenses", expenses_path %>
+    
+      <%= button_to "Destroy this expense", @expense, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+    </div>
+</div>

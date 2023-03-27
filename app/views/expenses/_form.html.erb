@@ -1,0 +1,61 @@
+
+
+<%= form_with(model: expense) do |form| %>
+  <% if expense.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+
+      <ul>
+        <% expense.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :amount, class: "form-label" %>
+    <%= form.text_field :amount, autocomplete: "amount", class: "form-control" %>
+  </div>
+  </div>
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, autocomplete: "description", class: "form-control" %>
+  </div>
+  </div>
+
+  <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label "Who's Expense", class: "form-label" %>
+    <%= form.collection_select( :employee_id, Employee.order(:name),:id,:name,{include_blank: true}, {class: 'form-select'})%>
+  </div>
+  </div>
+
+
+  <% if current_user.admin? %>
+    <div class="d-flex flex-row align-items-center mb-4">
+      <div class="form-outline flex-fill mb-0">
+        <%= form.label :status, class: "form-label"%>
+        <%= form.select :status, 
+        options_for_select([
+             ["Unpaid" , 'unpaid'], 
+             ["Processing", "processing"], 
+             ["Paid", "paid"]], selected: form.object.status),
+             {}, {class: "form-control" } %>
+    </div>
+    </div>
+  <% end %>
+  <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+      <%= form.label 'Receipts', class: "form-label" %>
+      <%= form.file_field :expense_docs, multiple: true, direct_upload: true, class: "form-control"  %>
+  </div>
+  </div>
+
+  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <%= form.submit class: "btn btn-primary btn-lg mt-4" %>
+  </div>
+<% end %>
