@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Message</h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Message: </strong>
+          <%= @message.message %>
+        </div>
+                <%= render @message %>
+    </div>
+
+    
+    <div>
+      <%= link_to "Edit this message", edit_message_path(@message) %> |
+      <%= link_to "Back to messages", messages_path %>
+    
+      <%= button_to "Destroy this message", @message, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+    </div>
+</div>

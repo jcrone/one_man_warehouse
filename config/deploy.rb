@@ -1,6 +1,6 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.2"
-
+require "whenever/capistrano"
 set :application, "omw"
 set :repo_url, "git@github.com:jcrone/one_man_warehouse.git"
 

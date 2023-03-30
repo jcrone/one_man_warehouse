@@ -88,3 +88,5 @@ gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem "sidekiq", "7.0"
 gem 'popper_js', '~> 2.11', '>= 2.11.6'
+gem "whenever", "~> 1.0", require: false
+gem 'twilio-ruby', '~> 5.75'

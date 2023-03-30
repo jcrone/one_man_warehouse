@@ -19,7 +19,7 @@ class StaticController < ApplicationController
         
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["authorization"] = 'Basic ODRmMDY3MmItMjczZC00NWQ1LWEwNmItYTAzMzg5YjUxMDg2OjYzMzVmMGJkMzgyNTExODdiMGUwYTI1MGM0YjAyNzky'
+        request["authorization"] = Rails.application.credentials.dig(:sellbrite, :basic_code)
         
         response = http.request(request)
         @orders = handle_response(response)

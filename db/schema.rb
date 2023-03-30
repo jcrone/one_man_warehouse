@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_010548) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_010636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -91,6 +91,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_010548) do
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_texts", force: :cascade do |t|
+    t.string "order_ref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_ref"], name: "index_order_texts_on_order_ref"
   end
 
   create_table "phrases", force: :cascade do |t|

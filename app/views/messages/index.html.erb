@@ -1,0 +1,30 @@
+<div class="container" >
+  <h1>Messages</h1> <%= link_to "New message", new_message_path, class:"btn btn-primary" %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+                 <th scope="col">Message</th>
+                  <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div id="messages">
+          <% @messages.each do |message| %>
+              <tr>
+                  <%= render message %>
+                  <td>
+                    <%= link_to "Show", message %>
+                    <%= link_to edit_message_path(message) do %>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    <% end %> 
+                  </td>
+              </tr>
+
+          <% end %>
+        </div>
+        
+      </tbody>
+    </table>
+</div>
+        
+
