@@ -58,7 +58,7 @@ class InventoriesController < ApplicationController
     def destroy
       @inventory.destroy
        respond_to do |format|
-        format.html { redirect_to inventories_url, notice: "inventory was successfully destroyed." }
+        format.html { redirect_back(fallback_location: root_path) }
         format.json { head :no_content }
       end
     end
@@ -66,7 +66,7 @@ class InventoriesController < ApplicationController
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_inventory
-        @inventory = inventory.find(params[:id])
+        @inventory = Inventory.find(params[:id])
       end
   
       # Only allow a list of trusted parameters through.
@@ -165,10 +165,14 @@ class InventoriesController < ApplicationController
       end
 
       def set_location
-        @location = Location.find(params[:location_id])
+        if !params[:location_id].nil?
+         @location = Location.find(params[:location_id])
+        end
       end
 
       def set_box
-        @box = Box.find(params[:box_id])
+        if !params[:location_id].nil?
+          @box = Box.find(params[:box_id])
+        end 
       end
   end 

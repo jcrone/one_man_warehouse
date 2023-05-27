@@ -26,6 +26,7 @@
         <%= inventory.qty %>
       </td>
       <td>
-        Something? 
+        <%= button_to "Delete", location_box_inventory_path(@location, @box, inventory), method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+
       </td>
     </div>

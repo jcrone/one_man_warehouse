@@ -36,6 +36,6 @@
         <%= inventory.qty %>
       </td>
       <td>
-        Something? 
+        <%= button_to "Delete", inventory , method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
       </td>
     </div>
