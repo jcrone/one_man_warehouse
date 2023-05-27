@@ -1,0 +1,41 @@
+<div id="<%= dom_id inventory %>">
+    <td>
+        <%= image_tag "#{inventory.photo_link}", size: '75x75' %>
+      </td>
+      <td>
+        <%= time_ago_in_words(inventory.created_at) %>
+
+      </td> 
+    <td>
+        <%= inventory.brand %>
+
+      </td>      <td>
+        <%= inventory.description    %>
+      </td>
+
+      <td>
+        <%= inventory.sku %>
+      </td>
+
+      <td>
+        <%= inventory.asin %>
+      </td>
+      <td>
+        <%= inventory.upc %>
+      </td>
+      <td>
+        <%= inventory.marketplace %>
+      </td>
+      <td>
+        <%= inventory.location.room %>
+      </td>
+      <td>
+        <%= inventory.box.number %>
+      </td>
+      <td>
+        <%= inventory.qty %>
+      </td>
+      <td>
+        Something? 
+      </td>
+    </div>

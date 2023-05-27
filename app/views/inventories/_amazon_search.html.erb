@@ -1,0 +1,55 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+               <th scope="col">Photo</th>
+               <th scope="col">Brand</th>
+               <th scope="col">Title</th>
+                <th scope="col">Size</th>
+                <th scope="col">Asin</th>
+                <th scope="col">Color</th>
+                <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <div id="amazon_search">
+            <td>
+                <%= image_tag "#{@amazon_search_photo}", size: '75x75' %>
+              </td>
+            <td>
+                <%= @amazon_search_brand %>
+              </td>
+            <td>
+                <%= @amazon_search_itemName %> 
+              </td>
+              <td>
+                <%= @amazon_search_size %> 
+              </td>
+              <td>
+                <%= @amazon_search_asin %> 
+              </td>
+              <td>
+                <%= @amazon_search_color %> 
+              </td>
+              <td>
+                
+                <%= link_to "Amazon",  @amazon_link, target: "_blank", class: "btn btn-primary" %>
+
+              </td>
+              <td>
+
+                <%= render partial: "inventories/form",  locals: {
+                  inventory: @inventory,
+                  item_description:  @amazon_search_itemName,
+                  item_asin: @amazon_search_asin,
+                  item_photo_link: @amazon_search_photo,
+                  item_marketplace: "amazon",
+                  item_brand: @amazon_search_brand 
+                } %>
+              </td>
+              
+        </div>
+      
+    </tbody>
+  </table>
+
+

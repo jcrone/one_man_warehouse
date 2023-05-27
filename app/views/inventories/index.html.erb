@@ -1,0 +1,50 @@
+
+<div class="container">
+    <h1>Inventory </h1>
+    <%= form_tag inventories_path, method: :get do %>
+    <div class="input-group mb-3">
+        <%= text_field_tag :search, params[:search], placeholder: "Search your inventory...",
+                        class: "form-control"  %>
+        <%= submit_tag 'Search', class:'btn btn-primary' %>
+    </div>
+    <% end %>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Photo</th>
+        <th scope="col">Created</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Description</th>
+         <th scope="col">sku</th>
+         <th scope="col">Asin</th>
+         <th scope="col">UPC</th>
+         <th scope="col">Marketplace</th>
+         <th scope="col">Room</th>
+         <th scope="col">Box</th>
+         <th scope="col">Qty</th>
+         <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <div id="boxes">
+        <% @inventory.each do |inventory| %>
+            <tr>
+              <%= render inventory %>
+            </tr>
+
+        <% end %>
+      </div>
+      
+    </tbody>
+  </table>
+
+  <div class="container">
+    <% if @pagy.pages > 1 %>
+    <div class="d-flex justify-content-center">
+      <%== pagy_bootstrap_nav(@pagy) %>   
+    </div>
+ 
+    <% end %>
+  </div>
+
+</div>

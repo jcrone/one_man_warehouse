@@ -1,0 +1,31 @@
+<%= form_with(model: inventory, url: [@location, @box, inventory]) do |form| %>
+  <% if inventory.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(inventory.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+
+      <ul>
+        <% inventory.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= form.hidden_field :upc, value: @upc, class: "form-control" %>
+    <%= form.hidden_field :description, value: item_description, class: "form-control" %>
+    <%= form.hidden_field :asin, value: item_asin, class: "form-control" %>
+    <%= form.hidden_field :location_id, value: @location.id , class: "form-control" %>
+    <%= form.hidden_field :box_id, value: @box.id , class: "form-control" %>
+    <%= form.hidden_field :photo_link, value: item_photo_link , class: "form-control" %>
+    <%= form.hidden_field :marketplace, value: item_marketplace , class: "form-control" %>
+    <%= form.hidden_field :brand, value: item_brand, class: "form-control" %>
+    
+
+ <div class="input-group mb-3">
+     <%= form.number_field :qty, value: 1, class: "form-control" %>
+     <%= form.submit class: "btn btn-primary" %>
+
+ </div>
+
+<% end %>

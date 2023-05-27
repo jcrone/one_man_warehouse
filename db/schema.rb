@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_010636) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_26_223612) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_010636) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "boxes", force: :cascade do |t|
+    t.string "number"
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_boxes_on_location_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -85,10 +93,35 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_010636) do
     t.index ["employee_id"], name: "index_hours_on_employee_id"
   end
 
+  create_table "inventories", force: :cascade do |t|
+    t.string "upc"
+    t.string "sku"
+    t.string "asin"
+    t.string "description"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "brand"
+    t.string "photo_link"
+    t.integer "qty"
+    t.string "marketplace"
+    t.bigint "box_id"
+    t.index ["box_id"], name: "index_inventories_on_box_id"
+    t.index ["location_id"], name: "index_inventories_on_location_id"
+  end
+
   create_table "links", force: :cascade do |t|
     t.string "name"
     t.string "category"
     t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "box"
+    t.string "room"
+    t.string "warhouse"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -156,6 +189,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_010636) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "boxes", "locations"
   add_foreign_key "expenses", "employees"
   add_foreign_key "hours", "employees"
+  add_foreign_key "inventories", "boxes"
+  add_foreign_key "inventories", "locations"
 end

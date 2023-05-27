@@ -1,0 +1,32 @@
+<div class="container" >
+  <h1>Locations</h1> <%= link_to "New location", new_location_path, class:"btn btn-primary" %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+                 <th scope="col">Room</th>
+                 <th scope="col">Warehouse</th>
+                 <th scope="col"># of Boxes</th>
+                  <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div id="locations">
+          <% @locations.each do |location| %>
+              <tr>
+                  <%= render location %>
+                  <td>
+                    <%= link_to "Show", location %>
+                    <%= link_to edit_location_path(location) do %>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    <% end %> 
+                  </td>
+              </tr>
+
+          <% end %>
+        </div>
+        
+      </tbody>
+    </table>
+</div>
+        
+

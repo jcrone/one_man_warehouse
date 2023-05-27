@@ -1,0 +1,22 @@
+
+
+<%= form_with(model: @box, url: [@location, @box]) do |form| %>
+  <% if @box.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@box.errors.count, "error") %> prohibited this box from being saved:</h2>
+
+      <ul>
+        <% @box.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= form.hidden_field :location_id, value: @location.id %>
+
+  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <%= form.submit class: "btn btn-primary btn-lg mt-4" %>
+  </div>
+<% end %>

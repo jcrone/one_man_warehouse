@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Location</h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Box: </strong>
+          <%= @location.box %>
+        </div>
+                <div class="mb-2">
+          <strong>Room: </strong>
+          <%= @location.room %>
+        </div>
+                <div class="mb-2">
+          <strong>Warhouse: </strong>
+          <%= @location.warhouse %>
+        </div>
+                <%= render @location %>
+    </div>
+
+    <%= render partial: 'boxes/form' %>
+
+    <%= render partial: 'boxes/index' %>
+    
+    <div>
+      <%= link_to "Edit this location", edit_location_path(@location) %> |
+      <%= link_to "Back to locations", locations_path %>
+    
+      <%= button_to "Destroy this location", @location, method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+    </div>
+</div>

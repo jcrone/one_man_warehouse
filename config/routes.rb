@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  
+  resources :locations do 
+    resources :boxes do 
+      resources :inventories
+    end 
+  end
+  resources :orders
+  resources :inventories, only: [:index]
   resources :messages
   resources :expenses
   require 'sidekiq/web'

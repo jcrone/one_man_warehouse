@@ -1,0 +1,44 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+               <th scope="col">Photo</th>
+               <th scope="col">Brand</th>
+               <th scope="col">Description</th>
+                <th scope="col">UPC</th>
+                <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <div id="walmart_search">
+            <td>
+                <%= image_tag "#{@walmart_search_photo}", size: '75x75' %>
+              </td>
+            <td>
+                <%= @walmart_search_brand %>
+              </td>
+            <td>
+                <%= @walmart_search_description %> 
+              </td>
+              <td>
+                <%= @upc %> 
+              </td>
+              <td>
+                <%= link_to "walmart",  @walmart_link, target: "_blank", class: "btn btn-primary" %>
+              </td>
+              <td>
+                <%= render partial: "inventories/form",  locals: {
+                  inventory: @inventory,
+                  item_description:  @walmart_search_description,
+                  item_asin: "NA",
+                  item_photo_link: @walmart_search_photo,
+                  item_marketplace: "walmart",
+                  item_brand: @walmart_search_brand 
+                } %>
+
+              </td>
+        </div>
+      
+    </tbody>
+</table>
+
+

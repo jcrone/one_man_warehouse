@@ -90,3 +90,4 @@ gem "sidekiq", "7.0"
 gem 'popper_js', '~> 2.11', '>= 2.11.6'
 gem "whenever", "~> 1.0", require: false
 gem 'twilio-ruby', '~> 5.75'
+gem 'amz_sp_api', '~> 1.0'

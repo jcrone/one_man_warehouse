@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Box <%= @box.location.room %> <%= @box.number %> </h1>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+                <div class="mb-2">
+          <strong>Number: </strong>
+          <%= @box.number %>
+        </div>
+                <div class="mb-2">
+          <strong>Location: </strong>
+          <%= @box.location.room %>
+        </div>
+                <%= render @box %>
+    </div>
+    <%= link_to "Add Inventory", new_location_box_inventory_path(@location, @box), class: "btn btn-primary" %>
+    
+    <div>
+      <%= link_to "Edit this box", edit_location_box_path(@location, @box) %> |
+      <%= link_to "Back to boxes", location_path(@location) %>
+    </div>
+
+    <%= render 'inventory_table' %>
+</div>

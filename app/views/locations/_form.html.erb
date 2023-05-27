@@ -1,0 +1,35 @@
+
+
+<%= form_with(model: location) do |form| %>
+  <% if location.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+        <% location.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+   <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :room, class: "form-label" %>
+    <%= form.text_field :room, autocomplete: "room", class: "form-control" %>
+  </div>
+  </div>
+
+  
+  <div class="d-flex flex-row align-items-center mb-4">
+    <div class="form-outline flex-fill mb-0">
+    <%= form.label :warhouse, class: "form-label" %>
+    <%= form.text_field :warhouse, autocomplete: "warhouse", class: "form-control" %>
+  </div>
+  </div>
+
+  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+    <%= form.submit class: "btn btn-primary btn-lg mt-4" %>
+  </div>
+<% end %>

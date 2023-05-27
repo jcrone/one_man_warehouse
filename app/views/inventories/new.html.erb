@@ -1,0 +1,34 @@
+<div class="container">
+<h1><%= @location.room %> Box <%= @box.number %> </h1>
+    <h2> <%= link_to "#{@location.room}", location_path(@location) %> / <%= link_to "Box: #{@box.number}", location_box_path(@location, @box)  %> </h2>
+
+    Search using UPC
+    
+    <div>
+        <%= form_tag new_location_box_inventory_path(@location, @box ), method: :get do %>
+        <div class="input-group mb-3">
+            <%= text_field_tag :upc, params[:upc], placeholder: "Search Amazon and Walmart marketplace using UPC...",
+                            class: "form-control"  %>
+            <%= submit_tag 'Search', class:'btn btn-primary' %>
+
+        </div>
+        <% end %>
+    </div>
+    
+    <h1>Amazon</h1>
+    <% if !@amazon_search_brand.nil? %> 
+        <%= render 'amazon_search' %>
+
+    <% else %> 
+     <h3>Barcode didn't show up</h3>
+    <% end %>
+
+    <h1>Walmart Results</h1>
+    <% if !@walmart_search_brand.nil? %> 
+        <%= render 'walmart_search' %>
+    <% else %> 
+        <h3>Barcode didn't show up</h3>
+    <% end %>
+
+
+</div>

@@ -1,0 +1,28 @@
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Photo</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Description</th>
+             <th scope="col">sku</th>
+             <th scope="col">Asin</th>
+             <th scope="col">upc</th>
+             <th scope="col">marketplace</th>
+             <th scope="col">qty</th>
+             <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div id="boxes">
+            <% @inventory.each do |inventory| %>
+                <tr>
+                  <%= render partial: "boxes/inventory",  locals: {
+                   inventory: inventory} %>
+                </tr>
+  
+            <% end %>
+          </div>
+          
+        </tbody>
+      </table>
