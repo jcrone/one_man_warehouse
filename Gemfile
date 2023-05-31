@@ -92,3 +92,4 @@ gem "whenever", "~> 1.0", require: false
 gem 'twilio-ruby', '~> 5.75'
 gem 'amz_sp_api', '~> 1.0'
 gem "honeybadger", "~> 5.2"
+gem 'faraday'

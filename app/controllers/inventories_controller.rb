@@ -3,15 +3,16 @@ class InventoriesController < ApplicationController
     require 'securerandom'
     before_action :set_upc
     before_action :set_inventory, only: %i[ show edit update destroy ]
-    before_action :walmart_token, only: %i[new]
+    before_action :walmart_token, only: %i[new, sync]
     before_action :search_amazon, only: %i[new]
     before_action :search_walmart, only: %i[new]
+    before_action :get_walmart_items, only: %i[sync]
     before_action :set_location, only: %i[new show edit update destroy ]
     before_action :set_box, only: %i[new show edit update destroy ]
 
     # GET /inventories or /inventories.json
     def index
-      @pagy, @inventory = pagy(Inventory.where(["concat_ws(upc, sku, brand, asin, description, marketplace) ILIKE ?", "%#{params[:search]}%"]), items: 100)
+      @pagy, @inventory = pagy(Inventory.where(["concat_ws(upc, sku, brand, asin, description, marketplace, active) ILIKE ?", "%#{params[:search]}%"]), items: 100)
     end
   
     # GET /inventories/1 or /inventories/1.json
@@ -40,6 +41,12 @@ class InventoriesController < ApplicationController
         end
       end
     end
+
+    def sync
+      @authorization = cookies[:wm_access_token]
+      SyncSkusJob.perform_later(@authorization)
+      redirect_to inventories_path, notice: "your inventory has been qued to sync. This may take a few minuntes" 
+    end 
   
     # PATCH/PUT /inventories/1 or /inventories/1.json
     def update
@@ -71,7 +78,7 @@ class InventoriesController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def inventory_params
-        params.require(:inventory).permit(:upc, :sku, :asin, :description, :location_id, :photo_link, :qty, :box_id, :brand, :marketplace)
+        params.require(:inventory).permit(:upc, :sku, :asin, :description, :location_id, :photo_link, :qty, :box_id, :brand, :marketplace, :active)
       end
 
       def set_upc
@@ -88,7 +95,6 @@ class InventoriesController < ApplicationController
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
   
-          p "🔥: "  + client_id + " : " + client_secret + " : "+ authorization
           request = Net::HTTP::Post.new(url)
           request["accept"] = 'application/json'
           request["authorization"] = "Basic " + Base64.strict_encode64("#{client_id}:#{client_secret}")
@@ -96,7 +102,7 @@ class InventoriesController < ApplicationController
           request["WM_SVC.NAME"] = "Walmart Marketplace"
           response = http.request(request)
           @walmart = handle_response(response)
-          p "🔥: " + @walmart.to_s
+
           if !@walmart["access_token"].nil?
             cookies[:wm_access_token] = { value: @walmart["access_token"], expires: 14.minute }
           end
@@ -125,6 +131,23 @@ class InventoriesController < ApplicationController
               @walmart_link = "https://seller.walmart.com/item/add-items?search=#{@upc}"
             end 
         end
+      end
+
+      def get_walmart_items
+        @inventory = Inventory.where(marketplace: "walmart")
+        @limit = "2000"
+        authorization = cookies[:wm_access_token]
+        url = URI("https://marketplace.walmartapis.com/v3/items?limit=#{@limit}")
+  
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        request = Net::HTTP::Get.new(url)
+        request["accept"] = 'application/json'
+        request["WM_SEC.ACCESS_TOKEN"]= authorization
+        request["WM_QOS.CORRELATION_ID"] = SecureRandom.uuid
+        request["WM_SVC.NAME"] = "Walmart Marketplace"
+        response = http.request(request)
+        @walmart_items  = handle_response(response)
       end
 
       def search_amazon

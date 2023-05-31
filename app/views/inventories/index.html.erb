@@ -2,6 +2,7 @@
 <div class="container">
     <h1>Inventory </h1>
     <%= form_tag inventories_path, method: :get do %>
+    <%= link_to "Sync Sku Numbers", sync_path, class: "btn btn-primary mb-3" %>
     <div class="input-group mb-3">
         <%= text_field_tag :search, params[:search], placeholder: "Search your inventory...",
                         class: "form-control"  %>
@@ -13,15 +14,16 @@
       <tr>
         <th scope="col">Photo</th>
         <th scope="col">Created</th>
+        <th scope="col">Active</th>
         <th scope="col">Brand</th>
         <th scope="col">Description</th>
          <th scope="col">sku</th>
          <th scope="col">Asin</th>
          <th scope="col">UPC</th>
          <th scope="col">Marketplace</th>
-         <th scope="col">Room</th>
-         <th scope="col">Box</th>
+         <th scope="col">Location</th>
          <th scope="col">Qty</th>
+         <th scope="col">Status</th>
          <th scope="col">Actions</th>
       </tr>
     </thead>

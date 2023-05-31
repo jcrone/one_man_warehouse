@@ -6,6 +6,10 @@
         <%= time_ago_in_words(inventory.created_at) %>
 
       </td> 
+      <td>
+        <%= inventory.active %>
+
+      </td>  
     <td>
         <%= inventory.brand %>
 
@@ -27,13 +31,13 @@
         <%= inventory.marketplace %>
       </td>
       <td>
-        <%= inventory.location.room %>
-      </td>
-      <td>
-        <%= inventory.box.number %>
+        <%= inventory.location.room %>-<%= inventory.box.number %>
       </td>
       <td>
         <%= inventory.qty %>
+      </td>
+      <td>
+        <%= inventory.published %>
       </td>
       <td>
         <%= button_to "Delete", inventory , method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>

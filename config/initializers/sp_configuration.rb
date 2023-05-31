@@ -5,6 +5,7 @@ require 'sellers-api-model'
 require 'fulfillment-outbound-api-model'
 require 'listings-items-api-model'
 require 'catalog-items-api-model'
+require 'reports-api-model'
 
   AmzSpApi.configure do |config|
     config.refresh_token =  Rails.application.credentials.lwa[:refresh_token] 

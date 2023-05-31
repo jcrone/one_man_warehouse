@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :shipments
   resources :shippings
   devise_for :users
+  get 'sync', to: 'inventories#sync'
 
   delete 'delete_shipment_file', to: 'shipments#delete_shipment_file'
   root to: "static#dashboard"
