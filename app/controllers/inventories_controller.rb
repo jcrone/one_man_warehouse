@@ -22,7 +22,6 @@ class InventoriesController < ApplicationController
     # GET /inventories/new
     def new
       @inventory = Inventory.new
-      console
     end
   
     # GET /inventories/1/edit

@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
             end
 
         end
-    console
     end 
 
     private
@@ -31,7 +30,7 @@ class OrdersController < ApplicationController
         @orders = handle_response(response)                                                 
         puts @orders
     end 
-    
+
     def handle_response(response)
         return JSON.parse(response.body) if Net::HTTPSuccess
     
