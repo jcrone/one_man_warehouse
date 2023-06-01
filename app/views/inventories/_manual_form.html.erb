@@ -1,0 +1,75 @@
+
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <h2>Manually Enter Inventory</h2>
+        <%= form_with(model: inventory, url: [@location, @box, inventory]) do |form| %>
+          <% if inventory.errors.any? %>
+            <div style="color: red">
+              <h2><%= pluralize(inventory.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+        
+              <ul>
+                <% inventory.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        
+          <div class="row">
+            <div class="col">
+                <%= form.label :upc, class: "form-label" %>
+                <%= form.text_field :upc, value: params["upc"], class: "form-control" %>
+            </div>
+
+            <div class=" col">
+                <%= form.label :asin, class: "form-label" %>
+                <%= form.text_field :asin, class: "form-control" %>
+            </div>
+            
+            <div class="col">
+                <%= form.label :sku, class: "form-label" %>
+                <%= form.text_field :sku, class: "form-control" %>
+            </div>
+         </div>
+        
+        
+          <div class="row">
+            <div class="col">
+            <%= form.label :description, class: "form-label" %>
+            <%= form.text_field :description, class: "form-control" %>
+            </div>
+           <div class="col">
+            <%= form.label :brand, class: "form-label" %>
+            <%= form.text_field :brand, class: "form-control" %>
+          </div>
+        </div>
+
+        
+          <div class="row">
+            <div class="col">
+            <%= form.label :marketplace, class: "form-label" %>
+            <%= form.text_field :marketplace, value: "walmart", class: "form-control" %>
+          </div>
+          <div class="col">
+            <%= form.label :qty, class: "form-label" %>
+            <%= form.number_field :qty, value: 1, class: "form-control" %>
+          </div>
+          <div class="col">
+            <%= form.label :photo_link, class: "form-label" %>
+            <%= form.text_field :photo_link, class: "form-control" %>
+          </div>
+        </div>
+        
+        
+          
+              <%= form.hidden_field :location_id, value: @location.id , class: "form-control" %>
+              <%= form.hidden_field :box_id, value: @box.id , class: "form-control" %>
+              <%= form.hidden_field :active, value: "unknown", class: "form-control" %>
+
+              <div class="mt-3">
+                <%= form.submit class: "btn btn-primary" %>
+              </div>
+        
+        <% end %>
+    
+    </div>
+

@@ -22,6 +22,7 @@ class InventoriesController < ApplicationController
     # GET /inventories/new
     def new
       @inventory = Inventory.new
+      console
     end
   
     # GET /inventories/1/edit
@@ -111,6 +112,7 @@ class InventoriesController < ApplicationController
 
       def search_walmart
         if !@upc.nil?
+          
             authorization = cookies[:wm_access_token]
             url = URI("https://marketplace.walmartapis.com/v3/items/walmart/search?upc=#{@upc}")
   
@@ -123,13 +125,12 @@ class InventoriesController < ApplicationController
             request["WM_SVC.NAME"] = "Walmart Marketplace"
             response = http.request(request)
             @walmart_search  = handle_response(response)
-
-            if !@walmart_search.items.nil?
+             if !@walmart_search.items.nil?
               @walmart_search_photo = @walmart_search.items[0].images[0].url
               @walmart_search_brand = @walmart_search.items[0].brand
               @walmart_search_description = @walmart_search.items[0].description
-              @walmart_link = "https://seller.walmart.com/item/add-items?search=#{@upc}"
             end 
+            @walmart_link = "https://seller.walmart.com/item/add-items?search=#{@upc}"
         end
       end
 

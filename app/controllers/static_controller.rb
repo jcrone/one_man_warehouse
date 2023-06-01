@@ -7,6 +7,15 @@ class StaticController < ApplicationController
         @unpaid = Hour.where(status: Hour.statuses[:unpaid]).or(Hour.where(status: Hour.statuses[:processing]))
         @pagy, @todos =  pagy(Todo.all)
         @shipments = Shipment.where.not(status: Shipment.statuses[:delivered])
+        respond_to do |format|
+            format.html
+            format.pdf do
+                pdf = PullListPdf.new(@orders)
+                send_data pdf.render, filename: "pull_list#{Time.new}.pdf",
+                                    type: "application/pdf"
+            end
+
+        end
     end 
 
     private

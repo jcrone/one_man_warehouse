@@ -26,9 +26,14 @@
     <h1>Walmart Results</h1>
     <% if !@walmart_search_brand.nil? %> 
         <%= render 'walmart_search' %>
-    <% else %> 
+    <% esle %> 
         <h3>Barcode didn't show up</h3>
     <% end %>
 
+    <% if !params[:upc].nil? %>
+        <%= link_to "Double Check Walmart", @walmart_link, target: "_blank",  class: "btn btn-primary" %>
+    <% end %> 
 
+
+    <%= render partial: "inventories/manual_form",  locals: { inventory: @inventory } %>
 </div>

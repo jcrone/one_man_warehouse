@@ -78,7 +78,7 @@ end
 gem "devise", "~> 4.8", ">= 4.8.1"
 gem 'pagy', '~> 6.0' # omit patch digit
 gem "pg_search", "~> 2.3"
-gem "prawn", github: "prawnpdf/prawn"
+gem 'prawn', '~> 2.4'
 gem "name_of_person", "~> 1.0"
 gem "aws-sdk-s3", require: false
 
