@@ -3,7 +3,7 @@ class InventoriesController < ApplicationController
     require 'securerandom'
     before_action :set_upc
     before_action :set_inventory, only: %i[ show edit update destroy ]
-    before_action :walmart_token, only: %i[new, sync]
+    before_action :walmart_token, only: %i[new sync]
     before_action :search_amazon, only: %i[new]
     before_action :search_walmart, only: %i[new]
     before_action :get_walmart_items, only: %i[sync]

@@ -43,7 +43,7 @@ class AmazonClient
       @inventory.each do |inventory| 
           item = amz_report.find {|row| row['asin1'] == inventory.asin}
           if item.nil?
-              inventory.active = "NOT-ACTIVE"
+              inventory.active = "NOT-LISTED"
               inventory.save
           else 
               inventory.sku = item["seller-sku"]
