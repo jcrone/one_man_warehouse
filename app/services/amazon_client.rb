@@ -48,6 +48,7 @@ class AmazonClient
               inventory.sku = item["seller-sku"]
               inventory.active = "ACTIVE"
               inventory.amz_qty = item["quantity"].to_i
+              inventory.unpublished_reason = item["quantity"]
               inventory.save
           end
       end 
