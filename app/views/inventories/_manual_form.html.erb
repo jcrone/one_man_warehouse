@@ -58,8 +58,11 @@
             <%= form.text_field :photo_link, class: "form-control" %>
           </div>
         </div>
-        
-        
+        <% frame_id = dom_id(@inventory, "sent_turbo_frame") %>
+        <%= turbo_frame_tag frame_id do %>
+          <%= form.check_box :sent %>
+          <%= form.label :sent, class: "form-check-label" %>
+        <% end %>
           
               <%= form.hidden_field :location_id, value: @location.id , class: "form-control" %>
               <%= form.hidden_field :box_id, value: @box.id , class: "form-control" %>

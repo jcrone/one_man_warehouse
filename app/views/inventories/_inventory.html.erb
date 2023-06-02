@@ -10,7 +10,14 @@
         <%= inventory.active %>
         <% if inventory.active == "NOT-LISTED" %> 
           <%= link_to "Amazon",  @amazon_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
+          <% frame_id = dom_id(inventory, "sent_turbo_frame") %>
+          <%= turbo_frame_tag frame_id do %>
+
+          <% end %>
+        <% elsif inventory.active == "ACTIVE"%> 
+        Amz qty: <%= inventory.amz_qty %>
         <% end %>
+  
       </td>  
     <td>
         <%= inventory.brand %>

@@ -27,8 +27,7 @@ class AmazonClient
     end
 
     def add_skus(inventory)
-    #   syncing = Sync.find(1)
-    #   syncing.pending!
+
       @inventory = inventory
       
       content = Faraday.get(@result.url).body
@@ -48,10 +47,11 @@ class AmazonClient
           else 
               inventory.sku = item["seller-sku"]
               inventory.active = "ACTIVE"
+              inventory.amz_qty = item["quantity"].to_i
               inventory.save
           end
       end 
-    #   syncing.completed!  
+
     end 
 
 end

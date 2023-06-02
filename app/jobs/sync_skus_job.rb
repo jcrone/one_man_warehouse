@@ -4,7 +4,7 @@ class SyncSkusJob < ApplicationJob
     queue_as :default
   
     def perform(authorization)
-        @inventory_amazon = Inventory.where(marketplace: "amazon").where(sku: nil)
+        @inventory_amazon = Inventory.where(marketplace: "amazon")
         @authorization = authorization
         AmazonClient.new.add_skus(@inventory_amazon)
         WalmartClient.new.add_walmart_skus(@authorization)

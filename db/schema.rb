@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_200926) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_191411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_200926) do
     t.string "active"
     t.string "published"
     t.string "unpublished_reason"
+    t.boolean "sent"
+    t.integer "amz_qty"
     t.index ["box_id"], name: "index_inventories_on_box_id"
     t.index ["location_id"], name: "index_inventories_on_location_id"
   end

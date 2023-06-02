@@ -79,7 +79,7 @@ class InventoriesController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def inventory_params
-        params.require(:inventory).permit(:upc, :sku, :asin, :description, :location_id, :photo_link, :qty, :box_id, :brand, :marketplace, :active)
+        params.require(:inventory).permit(:upc, :sent, :sku, :asin, :description, :location_id, :photo_link, :qty, :box_id, :brand, :marketplace, :active)
       end
 
       def set_upc
@@ -191,12 +191,16 @@ class InventoriesController < ApplicationController
       def set_location
         if !params[:location_id].nil?
          @location = Location.find(params[:location_id])
+        elsif !@inventory.nil?
+          @location = @inventory.location
         end
       end
 
       def set_box
         if !params[:location_id].nil?
           @box = Box.find(params[:box_id])
+        elsif !@inventory.nil?
+          @box = @inventory.box
         end 
       end
   end 
