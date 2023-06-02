@@ -12,6 +12,7 @@ class InventoriesController < ApplicationController
 
     # GET /inventories or /inventories.json
     def index
+      @hidden = false
       @amazon_link = "https://sellercentral.amazon.com/product-search/search?q="
       @pagy, @inventory = pagy(Inventory.where(["concat_ws(upc, sku, brand, asin, description, marketplace, active) ILIKE ?", "%#{params[:search]}%"]), items: 100)
     end
@@ -53,7 +54,8 @@ class InventoriesController < ApplicationController
     def update
       respond_to do |format|
         if @inventory.update(inventory_params)
-          format.html { redirect_to location_box_inventory_path(@inventory.location_id, @inventory.box_id), notice: "inventory was successfully updated." }
+          format.turbo_stream { redirect_to inventories_path }
+          format.html { redirect_to inventories_path, notice: "inventory was successfully updated." }
           format.json { render :show, status: :ok, inventory: @inventory }
         else
           format.html { render :edit, status: :unprocessable_entity }

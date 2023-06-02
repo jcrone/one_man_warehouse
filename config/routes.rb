@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end 
   end
   resources :orders
-  resources :inventories, only: [:index, :destroy, :show, :edit]
+  resources :inventories, only: [:index, :destroy, :show, :edit, :update]
   resources :messages
   resources :expenses
   require 'sidekiq/web'

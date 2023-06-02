@@ -17,7 +17,11 @@
           <div class="row">
             <div class="col">
                 <%= form.label :upc, class: "form-label" %>
-                <%= form.text_field :upc, value: params["upc"], class: "form-control" %>
+                <% if inventory.upc.nil? %>
+                  <%= form.text_field :upc, value: params["upc"], class: "form-control" %>
+                <% else %> 
+                  <%= form.text_field :upc, class: "form-control" %>
+                <% end %>
             </div>
 
             <div class=" col">
@@ -51,7 +55,15 @@
           </div>
           <div class="col">
             <%= form.label :qty, class: "form-label" %>
-            <%= form.number_field :qty, value: 1, class: "form-control" %>
+            <% frame_id = dom_id(@inventory, "qty_turbo_frame") %>
+              <%= turbo_frame_tag frame_id, class: "contents" do %>
+
+              <%= form.number_field :qty, required: true, class: "form-control" %>
+                <%= form.button class: "btn btn-primary inline-action mt-2 " do %>
+                <i class="fa-regular fa-floppy-disk"></i>
+                <% end %>
+
+            <% end %>
           </div>
           <div class="col">
             <%= form.label :photo_link, class: "form-label" %>
@@ -60,8 +72,12 @@
         </div>
         <% frame_id = dom_id(@inventory, "sent_turbo_frame") %>
         <%= turbo_frame_tag frame_id do %>
+        <div data-controller="save-input" >
           <%= form.check_box :sent %>
           <%= form.label :sent, class: "form-check-label" %>
+
+        </div>
+
         <% end %>
           
               <%= form.hidden_field :location_id, value: @location.id , class: "form-control" %>

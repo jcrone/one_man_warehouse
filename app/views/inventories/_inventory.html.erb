@@ -9,11 +9,16 @@
       <td>
         <%= inventory.active %>
         <% if inventory.active == "NOT-LISTED" %> 
+        <% frame_id = dom_id(inventory, "send_turbo_frame") %>
           <%= link_to "Amazon",  @amazon_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
-          <% frame_id = dom_id(inventory, "sent_turbo_frame") %>
-          <%= turbo_frame_tag frame_id do %>
-
+          <%= turbo_frame_tag frame_id  do %>
+          <%= form_with(model: inventory)  do |form| %>
+            <%= form.check_box :sent, {onchange: "this.form.requestSubmit()"} %>
+            <%= form.label :sent, class: "form-check-label" %>
           <% end %>
+          <% end %>
+
+
         <% elsif inventory.active == "ACTIVE"%> 
         Amz qty: <%= inventory.amz_qty %>
         <% end %>
@@ -43,7 +48,13 @@
         <%= inventory.location.room %>-<%= inventory.box.number %>
       </td>
       <td>
-        <%= inventory.qty %>
+        <% frame_id = dom_id(inventory, "qty_turbo_frame") %>
+        <%= form_with(model: inventory, class: "contents", data: { turbo_frame: frame_id }) do |form| %>
+          
+          <%= turbo_frame_tag frame_id, class:"inline-edit"  do %>
+            <%= link_to inventory.qty, edit_inventory_path(inventory) %>
+          <% end %>
+        <% end %>
       </td>
       <td>
         <%= inventory.published %>
