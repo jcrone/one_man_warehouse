@@ -12,6 +12,7 @@ class InventoriesController < ApplicationController
 
     # GET /inventories or /inventories.json
     def index
+      @amazon_link = "https://sellercentral.amazon.com/product-search/search?q="
       @pagy, @inventory = pagy(Inventory.where(["concat_ws(upc, sku, brand, asin, description, marketplace, active) ILIKE ?", "%#{params[:search]}%"]), items: 100)
     end
   

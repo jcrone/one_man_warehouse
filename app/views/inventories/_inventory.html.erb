@@ -8,7 +8,9 @@
       </td> 
       <td>
         <%= inventory.active %>
-
+        <% if inventory.active == "NOT-LISTED" %> 
+          <%= link_to "Amazon",  @amazon_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
+        <% end %>
       </td>  
     <td>
         <%= inventory.brand %>
