@@ -15,6 +15,16 @@ class InventoriesController < ApplicationController
       @hidden = false
       @amazon_link = "https://sellercentral.amazon.com/product-search/search?q="
       @pagy, @inventory = pagy(Inventory.where(["concat_ws(upc, sku, brand, asin, description, marketplace, active) ILIKE ?", "%#{params[:search]}%"]), items: 100)
+      respond_to do |format|
+        format.html 
+        format.csv {
+          if params[:search].nil?
+            @inventory = Inventory.all
+          end
+          send_data @inventory.to_csv(['sku', 'upc', 'asin', 'marketplace','brand', 'description', 'active', 'qty','room','number']), 
+          filename: "Inventory-#{Date.today}.csv" 
+        }
+      end
     end
   
     # GET /inventories/1 or /inventories/1.json
