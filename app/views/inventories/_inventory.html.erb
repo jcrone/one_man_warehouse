@@ -9,13 +9,13 @@
       <td>
         <%= inventory.active %>
         <% if inventory.active == "NOT-LISTED" %> 
-        <% frame_id = dom_id(inventory, "send_turbo_frame") %>
+          <% frame_id = dom_id(inventory, "send_turbo_frame") %>
           <%= link_to "Amazon",  @amazon_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
           <%= turbo_frame_tag frame_id  do %>
-          <%= form_with(model: inventory)  do |form| %>
-            <%= form.check_box :sent, {onchange: "this.form.requestSubmit()"} %>
-            <%= form.label :sent, class: "form-check-label" %>
-          <% end %>
+            <%= form_with(model: inventory, class: "contents", data: { turbo_frame: frame_id }) do |form| %>
+              <%= form.check_box :sent, {onchange: "this.form.requestSubmit()"} %>
+              <%= form.label :sent, class: "form-check-label" %>
+            <% end %>
           <% end %>
 
 
