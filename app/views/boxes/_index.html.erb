@@ -15,6 +15,12 @@
                   <%= render box %>
                   <td>
                     <%= link_to "Add Inventory", location_box_path(@location, box) %>
+                    <% if box.inventories.count < 1 %>
+                      <%= button_to location_box_path(@location, box), method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                      <% end %> 
+                    <% end %>
+                  
                   </td>
               </tr>
 

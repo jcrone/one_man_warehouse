@@ -25,7 +25,7 @@ class BoxesController < ApplicationController
   # POST /boxes or /boxes.json
   def create
     @box = Box.new(box_params)
-    @box.number = @box_number
+    @box.box_number = @box_number
     respond_to do |format|
       if @box.save
         format.html { redirect_to location_box_path(@location, @box), notice: "Box was successfully created." }
@@ -55,7 +55,7 @@ class BoxesController < ApplicationController
     @box.destroy
 
     respond_to do |format|
-      format.html { redirect_to boxes_url, notice: "Box was successfully destroyed." }
+      format.html { redirect_to location_path(@location), notice: "Box was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -68,10 +68,10 @@ class BoxesController < ApplicationController
 
     def set_box_number
       boxes = Box.where(location_id: @location.id)
-      if boxes.maximum(:number).nil?
+      if boxes.maximum(:box_number).nil?
         @box_number = 1
       else 
-        @box_number = boxes.maximum(:number).to_i + 1
+        @box_number = boxes.maximum(:box_number) + 1
       end 
     end 
 
@@ -80,6 +80,6 @@ class BoxesController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def box_params
-      params.require(:box).permit(:number, :location_id)
+      params.require(:box).permit(:number, :location_id, :box_number)
     end
 end

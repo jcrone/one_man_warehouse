@@ -2,11 +2,10 @@
   <div class="bg-white rounded shadow p-8 m-3">
     <div class="p-5">
       <h1>Editing box</h1>
-      <%= render "form", box: @box %>
+      <%= @box.box_number %>
+      <%= button_to "Destroy BOX# #{@box.box_number}", location_box_path(@location, @box), method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
       <br>  
       <div>
-        <%= link_to "Show this box", @box %> |
-        <%= link_to "Back to boxes", boxes_path %>
       </div>
     </div>
   </div>
