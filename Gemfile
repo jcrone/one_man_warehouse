@@ -93,3 +93,5 @@ gem 'twilio-ruby', '~> 5.75'
 gem 'amz_sp_api', '~> 1.0'
 gem "honeybadger", "~> 5.2"
 gem 'faraday'
+gem 'barby', '~> 0.6.8'
+gem 'chunky_png', '~> 1.4'

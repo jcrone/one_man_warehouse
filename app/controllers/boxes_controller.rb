@@ -11,6 +11,19 @@ class BoxesController < ApplicationController
   # GET /boxes/1 or /boxes/1.json
   def show
     @inventory = @box.inventories
+    respond_to do |format|
+      format.html 
+      format.csv {
+        send_data @inventory.to_csv(['sku', 'upc', 'asin', 'marketplace','brand', 'description', 'active', 'qty','room','number']), 
+        filename: "Inventory-#{Date.today}.csv" 
+      }
+      format.pdf do 
+        @inventory = @inventory.where(marketplace: 'amazon')
+        pdf = AsinLablesPdf.new(@inventory)
+        send_data pdf.render, filename: "#{@location.room} Box #{@box.box_number} - #{Time.new}.pdf",
+                            type: "application/pdf"
+      end 
+    end
   end
 
   # GET /boxes/new

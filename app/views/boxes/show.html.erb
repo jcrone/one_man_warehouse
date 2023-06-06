@@ -1,5 +1,11 @@
 <div class="container">
     <h1>Box <%= @box.box_number %> in the <%= @box.location.room %>  </h1>
+    <%= link_to location_box_path(@location, @box, format: "csv"), class: "btn btn-primary mb-3" do %>
+      <i class="fa-regular fa-circle-down"></i> Download Excel
+    <% end %>
+    <%= link_to location_box_path(@location, @box, format: "pdf"), class: "btn btn-primary mb-3" do %>
+      <i class="fa-regular fa-circle-down"></i> Download Asin Tags
+    <% end %>
     <div class="shadow p-3 mb-5 bg-body rounded">
                 <div class="mb-2">
           <strong>Box #: </strong>
