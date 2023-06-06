@@ -4,8 +4,11 @@
       </td>
     <td>
         <%= inventory.brand %>
-
-      </td>      <td>
+        <% if inventory.active == "ACTIVE"%> 
+        Amz qty: <%= inventory.amz_qty %>
+        <% end %>
+      </td>      
+      <td>
         <%= inventory.description    %>
       </td>
 
