@@ -12,7 +12,7 @@
           <% frame_id = dom_id(inventory, "send_turbo_frame") %>
           <%= link_to "Amazon",  @amazon_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
           <%= turbo_frame_tag frame_id  do %>
-            <%= form_with(model: inventory, class: "contents", data: { turbo_frame: frame_id }) do |form| %>
+            <%= form_with(model: inventory, data: { turbo_frame: frame_id }) do |form| %>
               <%= form.check_box :sent, {onchange: "this.form.requestSubmit()"} %>
               <%= form.label :sent, class: "form-check-label" %>
             <% end %>
@@ -36,7 +36,9 @@
       </td>
 
       <td>
-        <%= inventory.asin %>
+        <% if !inventory.asin.nil? %>
+          <%= link_to inventory.asin, @amazon_listing + inventory.asin, target: :_blank %>
+        <% end %>
       </td>
       <td>
         <%= inventory.upc %>

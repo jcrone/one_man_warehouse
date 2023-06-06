@@ -31,3 +31,23 @@ Phrase.destroy_all
     Phrase.create phrase: todo_phrase,
                     category: "todo"
 end
+
+if Rails.env.development?
+  200.times do 
+    Inventory.create!(                                                     
+      upc: "043475724248",                                                                                                  
+      asin: "B09L7F899D",                                                 
+      description: "Danskin Women's Super Soft 7/8 Legging with Pockets (Black Camo Print, Small)",
+      location_id: 1,                                                     
+      brand: "Danskin",
+      photo_link: "https://m.media-amazon.com/images/I/316OfXQ1UcL._SL75_.jpg",
+      qty: 4,
+      marketplace: "amazon",
+      box_id: 4,
+      active: "NOT-LISTED"
+
+    )
+
+    
+  end 
+end
