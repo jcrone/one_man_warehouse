@@ -10,6 +10,7 @@ class BoxesController < ApplicationController
 
   # GET /boxes/1 or /boxes/1.json
   def show
+    @amazon_listing = 'https://sellercentral.amazon.com/inventory/?search:'
     @inventory = @box.inventories
     respond_to do |format|
       format.html 
