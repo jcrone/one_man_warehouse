@@ -14,7 +14,9 @@
       </td>
 
       <td>
-        <%= inventory.asin %>
+        <% if !inventory.asin.nil? %>
+          <%= link_to inventory.asin, @amazon_listing + inventory.asin, target: :_blank %>
+        <% end %>
       </td>
       <td>
         <%= inventory.upc %>
