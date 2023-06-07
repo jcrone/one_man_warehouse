@@ -22,7 +22,7 @@ class PullListPdf < Prawn::Document
                 title = item["title"]
 
                 if qty.to_i > 1 
-                    icon "<icon>fas-exclamation-circle</icon> <icon>fas-beer</icon> <icon>fas-beer</icon> ORDERED QTY: #{qty} of #{title}", inline_format: true
+                    icon "<icon color='D11D1D'>fas-exclamation-circle</icon> <icon color='fcba03'>fas-beer</icon> <icon color='fcba03'>fas-beer</icon> ORDERED QTY: #{qty} of #{title}", inline_format: true
                 else
                     text "ORDERED QTY: #{qty} of #{title}"
                 end
