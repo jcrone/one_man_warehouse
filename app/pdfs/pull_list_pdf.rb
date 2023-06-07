@@ -20,11 +20,16 @@ class PullListPdf < Prawn::Document
 
               qty= item["quantity"]
                 title = item["title"]
-                text "ORDERED QTY: #{qty} of #{title}"
+
+                if qty.to_i > 1 
+                    icon "<icon>fas-exclamation-circle</icon> <icon>fas-beer</icon> <icon>fas-beer</icon> ORDERED QTY: #{qty} of #{title}", inline_format: true
+                else
+                    text "ORDERED QTY: #{qty} of #{title}"
+                end
                 if !@inventory.empty?
                 text " Locations: "
                     @inventory.each do |inventory|
-                      text  "    * There are #{inventory.qty} @ #{inventory.location.room}-#{inventory.box.number}"
+                         text  "    * There are #{inventory.qty} @ #{inventory.location.room}-#{inventory.box.number}"
                     end
                 else
                     text " * Item doesn't appear to be in this system"

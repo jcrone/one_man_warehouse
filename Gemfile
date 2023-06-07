@@ -95,3 +95,4 @@ gem "honeybadger", "~> 5.2"
 gem 'faraday'
 gem 'barby', '~> 0.6.8'
 gem 'chunky_png', '~> 1.4'
+gem 'prawn-icon', '~> 3.1'
