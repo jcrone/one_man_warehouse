@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   # GET /expenses or /expenses.json
   def index
     @paid_expenses = Expense.where(status: "paid")
-    @unpaid_expenses = Expense.where(status: "unpaid")
+    @unpaid_expenses = Expense.where('status !=?' ,"paid")
   end
 
   # GET /expenses/1 or /expenses/1.json
