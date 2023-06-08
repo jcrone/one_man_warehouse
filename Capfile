@@ -35,7 +35,6 @@ require "capistrano/rbenv"
 # require "capistrano/rails/migrations"
 require "capistrano/passenger"
 require "whenever/capistrano"
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 set :rbenv_type, :user
 set :rbenv_ruby, '3.1.3'
 
