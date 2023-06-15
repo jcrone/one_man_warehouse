@@ -47,7 +47,7 @@
         <%= inventory.marketplace %>
       </td>
       <td>
-        <%= inventory.location.room %>-<%= inventory.box.box_number %>
+        <%= link_to "#{inventory.location.room}-#{inventory.box.box_number}", location_box_path(inventory.location, inventory.box) %>
       </td>
       <td>
         <% frame_id = dom_id(inventory, "qty_turbo_frame") %>
