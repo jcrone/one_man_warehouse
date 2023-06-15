@@ -1,6 +1,6 @@
 <div class="container">
-<h1><%= @location.room %> Box <%= @box.number %> </h1>
-    <h2> <%= link_to "#{@location.room}", location_path(@location) %> / <%= link_to "Box: #{@box.number}", location_box_path(@location, @box)  %> </h2>
+<h1><%= @location.room %> Box <%= @box.box_number %> </h1>
+    <h2> <%= link_to "#{@location.room}", location_path(@location) %> / <%= link_to "Box: #{@box.box_number}", location_box_path(@location, @box)  %> </h2>
 
     Search using UPC
     
