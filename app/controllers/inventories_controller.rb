@@ -182,7 +182,9 @@ class InventoriesController < ApplicationController
           end
           if @amazon_search.number_of_results > 0
             @amazon_search_asin = @amazon_search.items.first[:asin]
-            @amazon_search_photo = @amazon_search.items.first[:images].first[:images][1][:link]
+            if !@amazon_search.items.first[:images].nil? && !@amazon_search.items.first[:images].first[:images][1].nil?
+              @amazon_search_photo = @amazon_search.items.first[:images].first[:images][1][:link]
+            end 
             @amazon_search_size  = @amazon_search.items.first[:summaries].first[:size]
             @amazon_search_brand  = @amazon_search.items.first[:summaries].first[:brand]
             @amazon_search_color  = @amazon_search.items.first[:summaries].first[:color]
