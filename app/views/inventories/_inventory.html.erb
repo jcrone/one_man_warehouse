@@ -19,8 +19,8 @@
           <% end %>
 
 
-        <% elsif inventory.active == "ACTIVE"%> 
-        Amz qty: <%= inventory.amz_qty %>
+        <% elsif inventory.active == "ACTIVE" || inventory.active == "PUBLISHED"%> 
+        MKT qty: <%= inventory.amz_qty %>
         <% end %>
   
       </td>  
@@ -32,7 +32,13 @@
       </td>
 
       <td>
-        <%= inventory.sku %>
+        <% if inventory.marketplace == 'walmart' && !inventory.sku.nil?%>
+          <%= link_to inventory.sku, 
+            "https://seller.walmart.com/items-and-inventory/manage-items?filters=%7B%22productOfferId%22%3A%7B%22op%22%3A%22contains%22%2C%22value%22%3A%5B%7B%22key%22%3A%22sku%22%2C%22value%22%3A%22#{inventory.sku}%22%7D%5D%7D%7D",
+            target: :_blank %>
+        <% else %>
+          <%= inventory.sku %>
+        <% end %> 
       </td>
 
       <td>

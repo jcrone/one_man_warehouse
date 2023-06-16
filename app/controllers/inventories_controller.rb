@@ -58,6 +58,7 @@ class InventoriesController < ApplicationController
     def sync
       @authorization = cookies[:wm_access_token]
       SyncSkusJob.perform_later(@authorization)
+      WalmartInventoryJob.perform_later(@authorization)
       redirect_to inventories_path, notice: "your inventory has been qued to sync. This may take a few minuntes" 
     end 
   
