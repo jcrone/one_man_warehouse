@@ -24,7 +24,7 @@ class WalmartClient
         request["WM_SVC.NAME"] = "Walmart Marketplace"
         response = http.request(request)
         @walmart_search  = handle_response(response)
-        p "🔥 : #{@walmart_search}"
+        # p "🔥 : #{@walmart_search}"
         if !@walmart_search.ItemResponse.nil?
             @items = @walmart_search.ItemResponse
            

@@ -34,7 +34,6 @@ class WalmartInventory
 
     def handle_response(response)
         return JSON.parse(response.body, object_class: OpenStruct) if Net::HTTPSuccess
-    
         error_message = "API request failed with code #{response.code}: #{response.message}"
         raise ApiError, error_message
         rescue JSON::ParserError

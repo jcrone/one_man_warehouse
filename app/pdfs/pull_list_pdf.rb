@@ -29,7 +29,11 @@ class PullListPdf < Prawn::Document
                 if !@inventory.empty?
                 text " Locations: "
                     @inventory.each do |inventory|
-                         text  "    * There are #{inventory.qty} @ #{inventory.location.room}-#{inventory.box.box_number}"
+                        if inventory.qty > 0
+                          text  "    * In Stock: <b>#{inventory.qty} @ <u>#{inventory.location.room}-#{inventory.box.box_number}</b></u>", inline_format: true
+                        else 
+                          text  "    * Out of Stock: <b>#{inventory.qty} last seen @ <u>#{inventory.location.room}-#{inventory.box.box_number}</b></u>", inline_format: true
+                        end
                     end
                 else
                     text " * Item doesn't appear to be in this system"
