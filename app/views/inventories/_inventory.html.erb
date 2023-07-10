@@ -10,13 +10,17 @@
         <%= inventory.active %>
         <% if inventory.active == "NOT-LISTED" %> 
           <% frame_id = dom_id(inventory, "send_turbo_frame") %>
-          <%= link_to "Amazon",  @amazon_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
-          <%= turbo_frame_tag frame_id  do %>
+          <% if inventory.marketplace == 'walmart' %>
+            <%= link_to "Walmart", @walmart_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
+          <% else %>
+            <%= link_to "Amazon",  @amazon_link + inventory.upc, target: "_blank", class: "btn btn-primary" %>
+          <% end %>
+            <%= turbo_frame_tag frame_id  do %>
             <%= form_with(model: inventory, data: { turbo_frame: frame_id }) do |form| %>
               <%= form.check_box :sent, {onchange: "this.form.requestSubmit()"} %>
               <%= form.label :sent, class: "form-check-label" %>
-            <% end %>
           <% end %>
+        <% end %>
 
 
         <% elsif inventory.active == "ACTIVE" || inventory.active == "PUBLISHED"%> 
@@ -34,7 +38,7 @@
       <td>
         <% if inventory.marketplace == 'walmart' && !inventory.sku.nil?%>
           <%= link_to inventory.sku, 
-            "https://seller.walmart.com/items-and-inventory/manage-items?filters=%7B%22productOfferId%22%3A%7B%22op%22%3A%22contains%22%2C%22value%22%3A%5B%7B%22key%22%3A%22sku%22%2C%22value%22%3A%22#{inventory.sku}%22%7D%5D%7D%7D",
+            "https://seller.walmart.com/item/list?filters=%257B%2522productOfferId%2522%253A%2522#{inventory.sku}%2522%257D",
             target: :_blank %>
         <% else %>
           <%= inventory.sku %>

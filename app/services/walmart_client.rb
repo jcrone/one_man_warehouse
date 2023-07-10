@@ -42,6 +42,11 @@ class WalmartClient
                     end 
                 end 
             end
+            @inventory = Inventory.where(marketplace: "walmart", active: "unknown")
+            if !@inventory.blank?
+                @inventory.update_all(active: "NOT-LISTED")
+            end
+
         end 
     end 
 
