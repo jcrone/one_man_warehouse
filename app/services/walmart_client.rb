@@ -42,11 +42,11 @@ class WalmartClient
                     end 
                 end 
             end
-            @inventory = Inventory.where(marketplace: "walmart", active: "unknown")
-            if !@inventory.blank?
-                @inventory.update_all(active: "NOT-LISTED")
+            @unknown_inventory = Inventory.where(marketplace: "walmart", active: "unknown")
+            p "🔥🔥🔥🔥🔥 : #{@unknown_inventory}"
+            if !@unknown_inventory.blank?
+                @unknown_inventory.update_all(active: "NOT-LISTED")
             end
-
         end 
     end 
 
