@@ -5,9 +5,9 @@ class SendTextJob < ApplicationJob
         @order_ref = order["order_ref"]
         @channel_name = order["channel_name"]
         @shipping = order["requested_shipping_service"]
-        rachel_number = '16199173432'
-        jamie_number = '16195080039'
-        TwilioClient.new.send_text(@order_ref, @channel_name, @shipping, rachel_number)
-        TwilioClient.new.send_text(@order_ref, @channel_name, @shipping, jamie_number)
+        primary_number = Rails.application.credentials.phone_number[:primary] 
+        secondary_number = Rails.application.credentials.phone_number[:secondary] 
+        TwilioClient.new.send_text(@order_ref, @channel_name, @shipping, primary_number)
+        TwilioClient.new.send_text(@order_ref, @channel_name, @shipping, secondary_number)
     end
   end
