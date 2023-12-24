@@ -27,6 +27,9 @@ class PullListPdf < Prawn::Document
                     text "ORDERED QTY: #{qty} of #{title}"
                 end
                 if !@inventory.empty?
+                    formatted_text([{:text=>"SEARCH: #{@inventory.last.upc}", :link=>"http://onemanwarehouse.com/inventories?search=#{@inventory.last.upc}", :color=>"0000ee"}])
+                    text "UPC: #{@inventory.last.upc}"
+                    text "ASIN: #{@inventory.last.asin}   SKU: #{@inventory.last.sku}"
                 text " Locations: "
                     @inventory.each do |inventory|
                         if inventory.qty > 0

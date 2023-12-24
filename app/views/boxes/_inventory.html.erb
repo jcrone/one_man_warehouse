@@ -32,7 +32,13 @@
         <%= inventory.marketplace %>
       </td>
       <td>
-        <%= inventory.qty %>
+        <% frame_id = dom_id(inventory, "qty_turbo_frame") %>
+        <%= form_with(model: inventory, class: "contents", data: { turbo_frame: frame_id }) do |form| %>
+          
+          <%= turbo_frame_tag frame_id, class:"inline-edit"  do %>
+            <%= link_to inventory.qty, edit_inventory_path(inventory) %>
+          <% end %>
+        <% end %>
       </td>
       <td>
         <%= button_to "Delete", location_box_inventory_path(@location, @box, inventory), method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
