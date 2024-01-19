@@ -12,12 +12,17 @@ class PullListPdf < Prawn::Document
             text "Order Number: #{order_no} from #{marketplace}", style: :bold
 
             @items.each do |item|
+                blank_sku = false
                 if item["sku"].nil?
                     @inventory = []
+                elsif item["sku"].blank?
+                    @inventory = []
+                    blank_sku = true
                 else
                     @inventory = Inventory.where(sku: item["sku"])
                 end
-
+                
+                
               qty= item["quantity"]
                 title = item["title"]
 
@@ -38,6 +43,8 @@ class PullListPdf < Prawn::Document
                           text  "    * Out of Stock: <b>#{inventory.qty} last seen @ <u>#{inventory.location.room}-#{inventory.box.box_number}</b></u>", inline_format: true
                         end
                     end
+                elsif blank_sku == true
+                    text " <icon color='fcba03'>fas-poo</icon> <icon color='fcba03'>fas-poo</icon>* This shit is not showing up!! Blank Sku "
                 else
                     text " * Item doesn't appear to be in this system"
                 end

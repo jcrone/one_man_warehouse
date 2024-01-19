@@ -6,7 +6,9 @@
       <%= hour.hours %>
   </td>
 <td>
-  <%= hour.start_date.strftime("%m/%d/%Y")%> - <%= hour.end_date.strftime("%m/%d/%Y") %>
+  <% if !hour.start_date.nil? & !hour.end_date.nil? %>
+    <%= hour.start_date.strftime("%m/%d/%Y")%> - <%= hour.end_date.strftime("%m/%d/%Y") %>
+  <% end %>
 </td>    
 
 <% if current_user.admin? %> 
