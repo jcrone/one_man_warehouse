@@ -3,36 +3,45 @@
   
 <li class="nav-item">
 
-<li class="nav-item <%= %> ">
-  <%= link_to "Shipments", shipments_path, class:"nav-link #{active_class(shipments_path)}" %>
-</li>
-<li class="nav-item">
-  <%= link_to "Contacts", contacts_path, class: "nav-link #{active_class(contacts_path)} " %>
-</li>
-<li class="nav-item">
-            <%= link_to "Links", links_path, class: "nav-link #{active_class("links_path")} " %>
-         </li>
+   <li class="nav-item">
+      <%= link_to "Hours", hours_path, class: "nav-link #{active_class("hours_path")} " %>
+   </li>
 
-<li class="nav-item">
-            <%= link_to "Todos", todos_path, class: "nav-link #{active_class("todos_path")} " %>
-         </li>
-<li class="nav-item">
-            <%= link_to "Hours", hours_path, class: "nav-link #{active_class("hours_path")} " %>
-         </li>
-<li class="nav-item">
-            <%= link_to "Expenses", expenses_path, class: "nav-link #{active_class("expenses_path")} " %>
-         </li>
-         <% if current_user.admin? %>
-            <li class="nav-item">
-               <%= link_to "Employees", employees_path, class: "nav-link #{active_class("employees_path")} " %>
-            </li>
-            <li class="nav-item">
-               <%= link_to "Messages", messages_path, class: "nav-link #{active_class("messages_path")} " %>
-            </li>
-         <% end %>
-<li class="nav-item">
-            <%= link_to "Locations", locations_path, class: "nav-link #{active_class("locations_path")} " %>
-         </li>
-         <li class="nav-item">
-            <%= link_to "Inventory", inventories_path, class: "nav-link #{active_class("inventories_path")} " %>
-         </li>
+<li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     Inventory
+   </a>
+   <ul class="dropdown-menu">
+     <li><%= link_to "Inventory", inventories_path, class: "dropdown-item nav-link #{active_class(inventories_path)}"  %></li>
+     <li><%= link_to "Locations", locations_path, class: "dropdown-item nav-link #{active_class(locations_path)}" %></li>
+   </ul>
+ </li>
+
+
+<li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     Other
+   </a>
+   <ul class="dropdown-menu">
+     <li><%= link_to "Expenses", expenses_path, class: "dropdown-item nav-link #{active_class(expenses_path)}" %></li>
+     <li><%= link_to "Todos", todos_path, class: "dropdown-item nav-link #{active_class(todos_path)}" %></li>
+     <li><%= link_to "Shipments", shipments_path, class:"dropdown-item nav-link #{active_class(shipments_path)}" %></li>
+     <li><%= link_to "Links", links_path, class: "dropdown-item nav-link #{active_class("links_path")} " %></li>
+     <li><%= link_to "Contacts", contacts_path, class: "dropdown-item nav-link #{active_class(contacts_path)} " %></li>
+   </ul>
+</li>
+
+
+<% if current_user.admin? %>
+<li class="nav-item dropdown">
+   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     Admin
+   </a>
+   <ul class="dropdown-menu">
+     <li><%= link_to "Employees", employees_path, class: "dropdown-item" %></li>
+     <li><%= link_to "Messages", messages_path, class: "dropdown-item" %></li>
+     <li><hr class="dropdown-divider"></li>
+     <li><a class="dropdown-item" href="#">Something else here</a></li>
+   </ul>
+ </li>
+<% end %>
