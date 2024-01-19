@@ -40,8 +40,10 @@
           <% end %>
         <% end %>
       </td>
-      <td>
-        <%= button_to "Delete", location_box_inventory_path(@location, @box, inventory), method: :delete, class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
-
+      <td >
+        <%= link_to "Edit", edit_location_box_inventory_path(@location, @box, inventory), method: :patch, class:"btn btn-secondary mr-2" %>
+      </td>
+      <td>          
+        <%= button_to "Delete", location_box_inventory_path(@location, @box, inventory), method: :delete, class:"btn btn-danger ml-2", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
       </td>
     </div>

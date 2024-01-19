@@ -67,8 +67,8 @@ class InventoriesController < ApplicationController
     def update
       respond_to do |format|
         if @inventory.update(inventory_params)
-          format.turbo_stream { redirect_to inventories_path }
-          format.html { redirect_to inventories_path, notice: "inventory was successfully updated." }
+          format.turbo_stream { redirect_to location_box_path(@inventory.location_id, @inventory.box_id)}
+          format.html { redirect_to location_box_path(@inventory.location_id, @inventory.box_id), notice: "inventory was successfully updated." }
           format.json { render :show, status: :ok, inventory: @inventory }
         else
           format.html { render :edit, status: :unprocessable_entity }
