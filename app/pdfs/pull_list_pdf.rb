@@ -25,6 +25,7 @@ class PullListPdf < Prawn::Document
                 
               qty= item["quantity"]
                 title = item["title"]
+                title.gsub!(/[^0-9A-Za-z\-]/,' ')
 
                 if qty.to_i > 1 
                     icon "<icon color='D11D1D'>fas-exclamation-circle</icon> <icon color='fcba03'>fas-beer</icon> <icon color='fcba03'>fas-beer</icon> ORDERED QTY: #{qty} of #{title}", inline_format: true
