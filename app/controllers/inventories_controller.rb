@@ -23,7 +23,7 @@ class InventoriesController < ApplicationController
           if params[:search].nil?
             @inventory = Inventory.all
           end
-          send_data @inventory.to_csv(['sku', 'upc', 'asin', 'marketplace','brand', 'description', 'active', 'qty','room','number']), 
+          send_data @inventory.to_csv(['sku', 'upc', 'asin', 'marketplace','brand', 'description', 'active', 'qty','room','box_number']), 
           filename: "Inventory-#{Date.today}.csv" 
         }
       end
